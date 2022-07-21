@@ -8,8 +8,9 @@ import { Boom } from "@hapi/boom";
 import path from "path";
 
 export const connect =async () => {
+  
   const { state, saveState } = useSingleFileAuthState(
-    path.resolve(__dirname, "..", "cache", "auth_info_multi.json")
+    path.resolve(__dirname, "..", "cache", "auth.json")
   );
 
   const socket = makeWaSocket({
