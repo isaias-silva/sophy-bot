@@ -26,7 +26,7 @@ coverage
 node_modules
 build
 bower_components
-cache
+cache/*
 # Editors
 .idea
 *.iml
