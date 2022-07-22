@@ -26,3 +26,29 @@
 <b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="">Baileys</a> feito em <b>Typescript</b>,
 o objetivo do bot é auxiliar em administração de grupos de whatsapp.
 </p>
+
+### funções 
+<table>
+<tr>
+<th>
+função
+<th>
+<th>
+status
+<th>
+<tr>
+<tr>
+<td>
+enviar texto
+</td>
+<td>
+OK
+</td>
+<td>
+responder mensagem
+</td>
+<td>
+OK
+</td>
+</tr>
+</table>
