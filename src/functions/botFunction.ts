@@ -8,11 +8,16 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) 
     const reply: Ibot["reply"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt }, { quoted: webMessage })
     }
-
+    const mark: Ibot["mark"] = async (txt: string,id:string) => {
+        return socket.sendMessage({ text: `@${id.split(`@`)[0]}, ${txt}`, mentions: [id] })
+    }
 
     return {
         sendText,
         reply,
+        mark,
+        remoteJid,
+
     }
 
 }

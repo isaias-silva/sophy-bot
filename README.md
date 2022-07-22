@@ -23,7 +23,7 @@
 
 ## sobre o bot
 
-<b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="">Baileys</a> feito em <b>Typescript</b>,
+<b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="https://www.npmjs.com/package/@adiwajshing/baileys">Baileys</a> feito em <b>Typescript</b>,
 o objetivo do bot é auxiliar em administração de grupos de whatsapp.
 </p>
 
@@ -48,6 +48,12 @@ OK
 <tr>
 <td>
 responder mensagem
+</td>
+<td>
+OK
+</td>
+<td>
+marcar numero
 </td>
 <td>
 OK
