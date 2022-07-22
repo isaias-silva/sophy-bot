@@ -58,7 +58,7 @@ OK
 marcar numero
 </td>
 <td>
-em progresso
+OK
 </td>
   </tr>
 </table>
