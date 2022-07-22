@@ -3,6 +3,10 @@
 <div style="display: flex; justfy-content: center; align-itens: center;">
 <img style="width: 300px;" src="./image.png">
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63289b033c9a6c8efffaea02b15a8edcf6e40213
 
 ### tecnologias
 <div>
@@ -19,6 +23,11 @@
 </div>
 ### libs
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 63289b033c9a6c8efffaea02b15a8edcf6e40213
 ## sobre o bot
 
 <b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="">Baileys</a> feito em <b>Typescript</b>,
