@@ -52,11 +52,13 @@ responder mensagem
 <td>
 OK
 </td>
-<td>
+</tr>
+ <tr>
+ <td>
 marcar numero
 </td>
 <td>
-OK
+em progresso
 </td>
-</tr>
+  </tr>
 </table>
