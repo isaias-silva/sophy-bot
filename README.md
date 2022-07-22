@@ -3,7 +3,7 @@
 <div style="display: flex; justfy-content: center; align-itens: center;">
 <img style="width: 300px;" src="./image.png">
 </div>
-<hr>
+
 
 
 ## tecnologias & bibliotecas ultilizadas(sujeito a atualizações)
@@ -13,7 +13,7 @@
 
 </div>
 
-<hr>
+
 
 ## sobre o bot
 
