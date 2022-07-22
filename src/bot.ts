@@ -1,5 +1,6 @@
 //conexão
 import { connect } from "./connection";
+import { getBotfunctions } from "./functions/botFunction";
 
 //exportando a inicialização do bot
 export async function bot() {
@@ -9,6 +10,11 @@ export async function bot() {
     socket.ev.on('messages.upsert', async (msg) => {
         const [wMessage] = msg.messages
         console.log(`messagem recebida: ${wMessage.message?.conversation}`)
-
+        const message = wMessage.message?.conversation
+        const {...data} = getBotfunctions(socket, wMessage)
+        
+        if (message == "hello") {
+            await data.reply('world')
+        }
     })
 }

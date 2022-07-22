@@ -11,9 +11,8 @@ export interface Ibot {
     sendVideo: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
     sendAudio: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>
     sendDoc: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
-    sendSticker: (pathOrBuffer: string | Buffer, isReply?: boolean) => Promise<proto.WebMessageInfo>
-    sendFile: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>
-    
+    sendSticker: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>
+
     //socket
     socket: any;
     //id da mensagem
@@ -34,8 +33,5 @@ export interface Ibot {
     isAudio: boolean;
     //é documento?
     isDocument: boolean;
-    //comando
-    command: string;
-    //argumento
-    args: string;
+    //comand
 }
