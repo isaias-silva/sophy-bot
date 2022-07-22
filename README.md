@@ -14,6 +14,7 @@
 </div>
 
 <hr>
+
 ## sobre o bot
 
 <b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="">Baileys</a> feito em <b>Typescript</b>,
