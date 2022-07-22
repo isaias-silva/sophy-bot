@@ -4,7 +4,7 @@ export interface Ibot {
     //enviar apenas texto
     sendText: (txt: string) => Promise<proto.WebMessageInfo>,
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
-    mark: (txt: string, id:any ) => Promise<proto.WebMessageInfo>,
+    mark: (txt: string, id:string ) => Promise<proto.WebMessageInfo>,
 
     //enviar midias
     sendImage: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
