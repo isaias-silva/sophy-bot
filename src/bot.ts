@@ -14,7 +14,7 @@ export async function bot() {
         const botF = getBotfunctions(socket, wMessage)
         
         if (message == "hello") {
-            await botF.mark('hello!',wMessage.key.participant)
+            
         }
     })
 }
