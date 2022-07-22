@@ -36,7 +36,7 @@ função
 <th>
 status
 <th>
-<tr>
+</tr>
 <tr>
 <td>
 enviar texto
@@ -44,6 +44,8 @@ enviar texto
 <td>
 OK
 </td>
+</tr>
+<tr>
 <td>
 responder mensagem
 </td>
