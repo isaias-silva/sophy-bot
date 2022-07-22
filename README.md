@@ -32,10 +32,10 @@ o objetivo do bot é auxiliar em administração de grupos de whatsapp.
 <tr>
 <th>
 função
-<th>
+</th>
 <th>
 status
-<th>
+</th>
 </tr>
 <tr>
 <td>
