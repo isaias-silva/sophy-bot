@@ -11,10 +11,10 @@ export async function bot() {
         const [wMessage] = msg.messages
         console.log(`messagem recebida: ${wMessage.message?.conversation}`)
         const message = wMessage.message?.conversation
-        const {...bot} = getBotfunctions(socket, wMessage)
+        const botF = getBotfunctions(socket, wMessage)
         
         if (message == "hello") {
-            await bot.reply('world')
+            await botF.mark('hello!',wMessage.key.participant)
         }
     })
 }
