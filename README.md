@@ -61,4 +61,12 @@ marcar numero
 OK
 </td>
   </tr>
+   <tr>
+ <td>
+enviar audio/musica
+</td>
+<td>
+OK
+</td>
+  </tr>
 </table>
