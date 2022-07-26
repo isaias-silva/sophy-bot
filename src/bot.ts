@@ -9,7 +9,7 @@ export async function bot() {
     //socket monitorando evento de messagem recebida
     socket.ev.on('messages.upsert', async (msg) => {
         const [wMessage] = msg.messages
-        console.log(`messagem recebida: ${wMessage.message?.conversation}`)
+     
         const message = wMessage.message?.conversation
         const botF = getBotfunctions(socket, wMessage)
 
