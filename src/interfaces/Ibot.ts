@@ -5,7 +5,8 @@ export interface Ibot {
     sendText: (txt: string) => Promise<proto.WebMessageInfo>,
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
     mark: (txt: string, id:string ) => Promise<proto.WebMessageInfo>,
-
+    //buttons
+    sendmenu: (object:any)=>Promise<proto.WebMessageInfo>
     //enviar midias
     sendImage: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
     sendVideo: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,

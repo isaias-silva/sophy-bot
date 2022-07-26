@@ -26,17 +26,20 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) 
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
-    const sendAudio: Ibot["sendAudio"] = async (pathOrBuffer: Buffer | string, isReply?: boolean, ptt?:boolean) => {
+    const sendAudio: Ibot["sendAudio"] = async (pathOrBuffer: Buffer | string, isReply?: boolean, ptt?: boolean) => {
         const audio = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
         const params = {
             audio,
-            mimetype:'audio/mp4',
+            mimetype: 'audio/mp4',
             ptt
-           
+
         }
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
+    const sendMenu: Ibot["sendmenu"] = async (object: any) => { 
+        return socket
+     }
     return {
         sendText,
         reply,
