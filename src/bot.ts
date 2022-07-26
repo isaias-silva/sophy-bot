@@ -1,7 +1,7 @@
 //conexão
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
-import path from 'path'
+
 //exportando a inicialização do bot
 export async function bot() {
     //conectando
@@ -12,9 +12,7 @@ export async function bot() {
         console.log(`messagem recebida: ${wMessage.message?.conversation}`)
         const message = wMessage.message?.conversation
         const botF = getBotfunctions(socket, wMessage)
-
-        if (message == "hello") {
-           
-        }
+        
+        
     })
 }
