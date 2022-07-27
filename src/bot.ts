@@ -2,6 +2,10 @@
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
 
+import path from 'path'
+import { Imenu } from "./interfaces/Imenu";
+import { isComand, searchComand } from "./functions/comand";
+
 //exportando a inicialização do bot
 export async function bot() {
     //conectando
@@ -12,7 +16,16 @@ export async function bot() {
      
         const message = wMessage.message?.conversation
         const botF = getBotfunctions(socket, wMessage)
-                
-        
+
+
+        if (!message) {
+            return
+        }
+        if (!isComand(message)) {
+            return
+
+        }
+        searchComand(message)
+
     })
 }
