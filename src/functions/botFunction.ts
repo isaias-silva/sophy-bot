@@ -39,6 +39,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) 
         return socket.sendMessage(remoteJid, params, options)
     }
     const sendMenu: Ibot["sendmenu"] = async (object: Imenu) => {
+        
         return socket.sendMessage(remoteJid, object)
     }
     return {

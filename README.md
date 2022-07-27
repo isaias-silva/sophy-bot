@@ -69,4 +69,12 @@ enviar audio/musica
 OK
 </td>
   </tr>
+    <tr>
+ <td>
+enviar botões
+</td>
+<td>
+OK
+</td>
+  </tr>
 </table>
