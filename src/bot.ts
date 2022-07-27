@@ -12,7 +12,7 @@ export async function bot() {
      
         const message = wMessage.message?.conversation
         const botF = getBotfunctions(socket, wMessage)
-        
+                
         
     })
 }
