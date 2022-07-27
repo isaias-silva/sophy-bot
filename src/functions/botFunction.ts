@@ -1,6 +1,7 @@
 import { proto } from "@adiwajshing/baileys";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
+import { Imenu } from "../interfaces/Imenu";
 //exportando as funções do bot
 export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) => {
     //id do chat onde foi enviada a messangem
@@ -37,15 +38,16 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) 
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
-    const sendMenu: Ibot["sendmenu"] = async (object: any) => { 
-        return socket
-     }
+    const sendMenu: Ibot["sendmenu"] = async (object: Imenu) => {
+        return socket.sendMessage(remoteJid, object)
+    }
     return {
         sendText,
         reply,
         mark,
         sendImage,
         sendAudio,
+        sendMenu,
         remoteJid,
 
     }

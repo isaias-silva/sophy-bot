@@ -2,6 +2,7 @@
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
 import path from 'path'
+import { Imenu } from "./interfaces/Imenu";
 //exportando a inicialização do bot
 export async function bot() {
     //conectando
@@ -9,12 +10,12 @@ export async function bot() {
     //socket monitorando evento de messagem recebida
     socket.ev.on('messages.upsert', async (msg) => {
         const [wMessage] = msg.messages
-     
+
         const message = wMessage.message?.conversation
         const botF = getBotfunctions(socket, wMessage)
 
-        if (message == "hello") {
-           
+        if (message == "TESTE") {
+         
         }
     })
 }

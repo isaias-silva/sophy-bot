@@ -1,4 +1,5 @@
 import { proto } from "@adiwajshing/baileys";
+import { Imenu } from "./Imenu";
 //interface do bot
 export interface Ibot {
     //enviar apenas texto
@@ -6,7 +7,7 @@ export interface Ibot {
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
     mark: (txt: string, id:string ) => Promise<proto.WebMessageInfo>,
     //buttons
-    sendmenu: (object:any)=>Promise<proto.WebMessageInfo>
+    sendmenu: (object:Imenu)=>Promise<proto.WebMessageInfo>
     //enviar midias
     sendImage: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
     sendVideo: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
