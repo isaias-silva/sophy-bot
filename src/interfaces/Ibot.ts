@@ -5,24 +5,18 @@ export interface Ibot {
     //enviar apenas texto
     sendText: (txt: string) => Promise<proto.WebMessageInfo>,
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
-    mark: (txt: string, id:string ) => Promise<proto.WebMessageInfo>,
+    mark: (txt: string, id: string) => Promise<proto.WebMessageInfo>,
     //buttons
-    sendmenu: (object:Imenu)=>Promise<proto.WebMessageInfo>
+    sendmenu: (object: Imenu) => Promise<proto.WebMessageInfo>
     //enviar midias
     sendImage: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
     sendVideo: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
-    sendAudio: (pathOrBuffer: string | Buffer, isReply?: boolean,ptt?:boolean) => Promise<proto.WebMessageInfo>
+    sendAudio: (pathOrBuffer: string | Buffer, isReply?: boolean, ptt?: boolean) => Promise<proto.WebMessageInfo>
     sendDoc: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
     sendSticker: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>
 
     //socket
     socket: any;
-    //id da mensagem
-    remoteJid: string;
-    //id que marca
-    replyJid: string;
-    //seu id
-    userJid: string;
     //objeto da mensagem
     webMessage: proto.IWebMessageInfo;
     //é imagem?
@@ -36,4 +30,5 @@ export interface Ibot {
     //é documento?
     isDocument: boolean;
     //comand
+    isGroup: boolean
 }

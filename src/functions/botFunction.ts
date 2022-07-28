@@ -4,8 +4,16 @@ import fs from 'fs'
 import { Imenu } from "../interfaces/Imenu";
 //exportando as funções do bot
 export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) => {
-    //id do chat onde foi enviada a messangem
+    //ids
     const { remoteJid } = webMessage.key
+    //booleans
+    const isImage: Ibot["isImage"] = webMessage.message?.imageMessage ? true : false
+    const isAudio: Ibot["isAudio"] = webMessage.message?.audioMessage ? true : false
+    const isSticker: Ibot["isSticker"] = webMessage.message?.stickerMessage ? true : false
+    const isDocument: Ibot["isDocument"] = webMessage.message?.documentMessage ? true : false
+    const isVideo: Ibot["isVideo"] = webMessage.message?.videoMessage ? true : false
+    const isGroup: Ibot["isGroup"] = webMessage.key.participant ? true : false
+    
     //enviar somente texto
     const sendText: Ibot["sendText"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt })
@@ -39,7 +47,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) 
         return socket.sendMessage(remoteJid, params, options)
     }
     const sendMenu: Ibot["sendmenu"] = async (object: Imenu) => {
-        
+
         return socket.sendMessage(remoteJid, object)
     }
     return {
@@ -50,6 +58,12 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo) 
         sendAudio,
         sendMenu,
         remoteJid,
+        isImage,
+        isAudio,
+        isDocument,
+        isSticker,
+        isVideo
+
 
     }
 
