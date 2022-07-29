@@ -31,5 +31,6 @@ export async function bot() {
         }
 
         //sem barreiras, comandos seguem apartir daqui
+        
     })
 }
