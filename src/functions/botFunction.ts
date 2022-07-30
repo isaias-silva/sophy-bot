@@ -3,31 +3,31 @@ import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
 import { Imenu } from "../interfaces/Imenu";
 //exportando as funções do bot
-export const getBotfunctions= (socket: any, webMessage: proto.IWebMessageInfo):Ibot => {
+export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo): Ibot => {
     //ids
-    const { remoteJid } = webMessage.key
-
+    const { remoteJid, participant } = webMessage.key
     //booleans
-    const isImage= webMessage.message?.imageMessage ? true : false
-    const isAudio= webMessage.message?.audioMessage ? true : false
+
+    const isImage = webMessage.message?.imageMessage ? true : false
+    const isAudio = webMessage.message?.audioMessage ? true : false
     const isSticker = webMessage.message?.stickerMessage ? true : false
     const isDocument = webMessage.message?.documentMessage ? true : false
     const isVideo = webMessage.message?.videoMessage ? true : false
     const isGroup = webMessage.key.participant ? true : false
-    
+
     //enviar somente texto
     const sendText: Ibot["sendText"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt })
     }
     //responder mensagem
-    const reply= async (txt: string) => {
+    const reply = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt }, { quoted: webMessage })
     }
     //marcar usuario
-    const mark= async (txt: string, id: string) => {
+    const mark = async (txt: string, id: string) => {
         return socket.sendMessage(remoteJid, { text: `@${id.split(`@`)[0]}, ${txt}`, mentions: [id] })
     }
-    const sendImage= async (pathOrBuffer: Buffer | string, caption?: string, isReply?: boolean) => {
+    const sendImage = async (pathOrBuffer: Buffer | string, caption?: string, isReply?: boolean) => {
         const image = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
         const params = {
             image,
@@ -36,7 +36,23 @@ export const getBotfunctions= (socket: any, webMessage: proto.IWebMessageInfo):I
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
-    const sendAudio= async (pathOrBuffer: Buffer | string, isReply?: boolean, ptt?: boolean) => {
+    const sendSticker = async (pathOrBuffer: string | Buffer, isReply?: boolean) => {
+        let options = {};
+
+        if (isReply) {
+            options = {
+                quoted: webMessage,
+            };
+        }
+
+        const sticker =
+            pathOrBuffer instanceof Buffer
+                ? pathOrBuffer
+                : fs.readFileSync(pathOrBuffer);
+
+        return await socket.sendMessage(remoteJid, { sticker }, options);
+    }
+    const sendAudio = async (pathOrBuffer: Buffer | string, isReply?: boolean, ptt?: boolean) => {
         const audio = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
         const params = {
             audio,
@@ -47,7 +63,19 @@ export const getBotfunctions= (socket: any, webMessage: proto.IWebMessageInfo):I
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
-    const sendmenu= async (object: Imenu) => {
+    const sendVideo = async (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => {
+        const video = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
+        const params = {
+            video,
+            caption: caption,
+
+
+        }
+        let options = isReply == true ? { quoted: webMessage } : {}
+        return socket.sendMessage(remoteJid, params, options)
+    }
+
+    const sendmenu = async (object: Imenu) => {
 
         return socket.sendMessage(remoteJid, object)
     }
@@ -58,6 +86,8 @@ export const getBotfunctions= (socket: any, webMessage: proto.IWebMessageInfo):I
         sendImage,
         sendAudio,
         sendmenu,
+        sendSticker,
+        sendVideo,
         remoteJid,
         isImage,
         isAudio,

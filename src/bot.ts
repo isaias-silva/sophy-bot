@@ -3,7 +3,7 @@ import { data } from "./config/data";
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
 import { isComand, searchComand } from "./functions/comand";
-
+import path from 'path'
 //exportando a inicialização do bot
 export async function bot() {
     //conectando
@@ -27,10 +27,10 @@ export async function bot() {
         }
         //se o comando nao existe
         if (!searchComand(wMessage)) {
-            return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}menu*`)
-        }
-
+          return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}menu*`)
+      }
+    
         //sem barreiras, comandos seguem apartir daqui
-        
+
     })
 }
