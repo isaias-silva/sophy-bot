@@ -5,6 +5,7 @@ import fs from 'fs'
 import path from 'path'
 import comandsList from "../config/comandsList"
 import { menu } from "../comands/menu"
+import { sticker } from "../comands/sticker"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text
@@ -21,7 +22,6 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
    const comand  = extractComand(message)
     let exists = comandsList.find(str => str == comand)
     if (exists) {
-        console.log(`comando existe`)
         return comand
     } else {
         return false
@@ -29,12 +29,14 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
 }
 export async function caseComand(bot:Ibot){
     const comand = extractComand(bot.webMessage.message)
-    console.log(comand)
+ 
     switch(comand){
         case `menu`:
           await menu(bot)
         break
-
+        case `sticker`:
+            await sticker(bot)
+        break 
 
     }
 }

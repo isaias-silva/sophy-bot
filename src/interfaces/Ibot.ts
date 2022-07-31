@@ -30,6 +30,8 @@ export interface Ibot {
     isAudio: boolean;
     //é documento?
     isDocument: boolean;
-    //comand
+    //é grupo?
     isGroup: boolean
+    //é reply?
+    isReply: boolean
 }
