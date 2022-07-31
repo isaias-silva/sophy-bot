@@ -27,6 +27,7 @@ export async function bot() {
         }
         //se o comando nao existe
         if (!searchComand(wMessage)) {
+           
             return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}menu*`)
         }
 
