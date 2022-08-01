@@ -27,6 +27,7 @@ node_modules
 build
 bower_components
 cache/auth.json
+temp/
 # Editors
 .idea
 *.iml

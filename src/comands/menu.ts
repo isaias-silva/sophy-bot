@@ -12,5 +12,5 @@ export async function menu(bot:Ibot){
         return template+=`\n |✪ *${data.prefix} ${value}*`
     })
 
-   return sendImage(path.resolve(`assets`,`img`,`perfil.png`),template)
+   return sendImage(path.resolve(`assets`,`img`,`perfil.png`),template,true)
 }
