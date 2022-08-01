@@ -8,7 +8,7 @@ import { menu } from "../comands/menu"
 import { sticker } from "../comands/sticker"
 export function isComand(message: proto.IMessage) {
 
-    const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text
+    const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption
     if (!texto) { return }
 
     let prefix = texto.split("")[0]
@@ -41,7 +41,7 @@ export async function caseComand(bot:Ibot){
     }
 }
 export function extractComand(msg:proto.IMessage | any){
-    const texto = msg?.conversation || msg?.imageMessage?.caption || msg?.extendedTextMessage?.text
+    const texto = msg.conversation || msg.imageMessage?.caption || msg.extendedTextMessage?.text || msg.videoMessage?.caption
     const comand = texto?.replace(data.prefix, "")
     return comand
 }
