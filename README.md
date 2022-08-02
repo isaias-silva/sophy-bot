@@ -77,6 +77,22 @@ enviar botões
 OK
 </td>
   </tr>
+     <tr>
+ <td>
+enviar figurinhas
+</td>
+<td>
+OK
+</td>
+  </tr>
+     <tr>
+ <td>
+enviar vídeos
+</td>
+<td>
+OK
+</td>
+  </tr>
 </table>
 
 ## comandos
