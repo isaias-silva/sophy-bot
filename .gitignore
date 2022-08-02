@@ -27,7 +27,7 @@ node_modules
 build
 bower_components
 cache/auth.json
-temp/
+
 # Editors
 .idea
 *.iml
@@ -41,3 +41,12 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+
+# formats temp media
+assets/temp/*.png
+assets/temp/*.jpg
+assets/temp/*.webp
+assets/temp/*.gif
+assets/temp/*.mp4
+assets/temp/*.mp3
+assets/temp/*.pdf

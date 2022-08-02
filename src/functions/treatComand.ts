@@ -7,6 +7,7 @@ import comandsList from "../config/comandsList"
 import { menu } from "../comands/menu"
 import { sticker } from "../comands/sticker"
 import { comandos } from "../comands/comandos"
+import { toimg } from "../comands/toimg"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -20,18 +21,21 @@ export function isComand(message: proto.IMessage) {
 export function searchComand(Webmessage: proto.IWebMessageInfo) {
     const { message } = Webmessage
 
-    const comand = extractComand(message)
-    let exists = comandsList.find(str => str == comand)
+    const comand = parameters(extractComand(message))
+    let exists = comandsList.find(str => str == comand[0])
     if (exists) {
-        return comand
+        return true
     } else {
         return false
     }
 }
+export function parameters(comand:string) {
+ return comand.split(" ")
+}
 export async function caseComand(bot: Ibot) {
-    const comand = extractComand(bot.webMessage.message)
-
-    switch (comand) {
+    const comand = parameters(extractComand(bot.webMessage.message))
+console.log(comand)
+    switch (comand[0]) {
         case `menu`:
             await menu(bot)
             break
@@ -40,6 +44,9 @@ export async function caseComand(bot: Ibot) {
             break
         case `comandos`:
             await comandos(bot)
+        break
+        case `toimg`:
+            await toimg(bot)
         break
         default:
             await bot.reply('erro no comando ou comando nao existe')

@@ -13,7 +13,7 @@ export async function menu(bot: Ibot) {
     ]
     const menu = {
         image: { url: path.resolve('assets', 'img', 'perfil.webp') },
-        caption: `*numero de comandos*:  ${comandsList.length}\n*botname*:  ${data.botname}\n*dono*:  +${data.owner}`,
+        caption: `_⚙️sophiaBot v${data.version}_\n*numero de comandos*:  ${comandsList.length}\n*botname*:  ${data.botname}\n*dono*:  +${data.owner}`,
         footer: 'desenvolvido por Zack black',
         templateButtons: buttons,
 
