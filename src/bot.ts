@@ -2,7 +2,7 @@
 import { data } from "./config/data";
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
-import { groupData } from "./functions/extractGroupData";
+
 import { caseComand, isComand, searchComand } from "./functions/treatComand";
 
 //exportando a inicialização do bot
@@ -14,10 +14,10 @@ export async function bot() {
         const [wMessage] = msg.messages
         
         const message = wMessage.message
-        const botF = getBotfunctions(socket, wMessage)
+        const botF =  getBotfunctions(socket, wMessage)
         //barreiras
       
-       
+       console.log(await botF.groupData)
         //se message nao existe
         if (!message) {
             return

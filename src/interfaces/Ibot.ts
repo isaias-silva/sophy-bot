@@ -1,7 +1,10 @@
 import { proto } from "@adiwajshing/baileys";
+import { Igroup } from "./Igroup";
 import { Imenu } from "./Imenu";
 //interface do bot
 export interface Ibot {
+    botInfo: {id:string,name:string}
+    groupData:Promise<Igroup>
     //enviar apenas texto
     sendText: (txt: string) => Promise<proto.WebMessageInfo>,
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
@@ -16,7 +19,7 @@ export interface Ibot {
    sendSticker: (pathOrBuffer: string | Buffer, isReply?: boolean) => Promise<proto.WebMessageInfo>
 
     remoteJid?:string | null
-    botInfo: {id:string,name:string}
+  
     //socket
     socket: any;
     //objeto da mensagem
@@ -37,4 +40,7 @@ export interface Ibot {
     isReply: boolean
     //é button
     isButtonRes: boolean
+    isAdmin: boolean
+    areAdmin: boolean
+
 }

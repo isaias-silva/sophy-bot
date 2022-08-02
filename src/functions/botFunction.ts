@@ -2,11 +2,17 @@ import { proto } from "@adiwajshing/baileys";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
 import { Imenu } from "../interfaces/Imenu";
+import { groupGetData } from "./extractGroupData";
 //exportando as funções do bot
 export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo): Ibot => {
     //ids
     const { remoteJid, participant } = webMessage.key
     const botInfo=socket.user
+    //group data
+    let isAdmin=false
+    let areAdmin=true;
+    const groupData=groupGetData(socket,webMessage).then((data:any)=>{return data})
+
     //booleans
 
     const isImage = webMessage.message?.imageMessage ? true : false
@@ -17,7 +23,9 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     const isGroup = participant ? true : false
 const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage? true: false
 const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
-    //enviar somente texto
+   
+
+//enviar somente texto
     const sendText: Ibot["sendText"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt })
     }
@@ -93,6 +101,7 @@ const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
         sendVideo,
         remoteJid,
         botInfo,
+        groupData,
         isImage,
         isAudio,
         isDocument,
@@ -100,6 +109,8 @@ const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
         isVideo,
         isGroup,
         isReply,
+        isAdmin,
+        areAdmin,
         isButtonRes,
         webMessage,
         socket,
