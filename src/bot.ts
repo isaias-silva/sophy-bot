@@ -17,7 +17,8 @@ export async function bot() {
         const botF =  getBotfunctions(socket, wMessage)
         //barreiras
       if(wMessage.key.participant)
-       console.log(await (await botF.groupData).isSuperAdmin(wMessage.key.participant))
+       console.log(await (await botF.groupData).imAdmin())
+       console.log(botF.botInfo)
         //se message nao existe
         if (!message) {
             return

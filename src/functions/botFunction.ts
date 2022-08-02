@@ -8,9 +8,9 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     //ids
     const { remoteJid, participant } = webMessage.key
     const botInfo=socket.user
+  
     //group data
-    let isAdmin=false
-    let areAdmin=true;
+   
     const groupData=groupGetData(socket,webMessage).then((data:any)=>{return data})
 
     //booleans
