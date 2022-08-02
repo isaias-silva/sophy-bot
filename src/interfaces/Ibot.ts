@@ -16,6 +16,7 @@ export interface Ibot {
    sendSticker: (pathOrBuffer: string | Buffer, isReply?: boolean) => Promise<proto.WebMessageInfo>
 
     remoteJid?:string | null
+    botInfo: {id:string,name:string}
     //socket
     socket: any;
     //objeto da mensagem

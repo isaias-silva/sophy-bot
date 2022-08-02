@@ -6,6 +6,7 @@ import { Imenu } from "../interfaces/Imenu";
 export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo): Ibot => {
     //ids
     const { remoteJid, participant } = webMessage.key
+    const botInfo=socket.user
     //booleans
 
     const isImage = webMessage.message?.imageMessage ? true : false
@@ -91,6 +92,7 @@ const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
         sendSticker,
         sendVideo,
         remoteJid,
+        botInfo,
         isImage,
         isAudio,
         isDocument,
