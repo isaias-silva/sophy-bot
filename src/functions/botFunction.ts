@@ -109,8 +109,6 @@ const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
         isVideo,
         isGroup,
         isReply,
-        isAdmin,
-        areAdmin,
         isButtonRes,
         webMessage,
         socket,

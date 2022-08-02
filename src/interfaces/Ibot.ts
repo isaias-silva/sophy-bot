@@ -40,7 +40,6 @@ export interface Ibot {
     isReply: boolean
     //é button
     isButtonRes: boolean
-    isAdmin: boolean
-    areAdmin: boolean
+  
 
 }
