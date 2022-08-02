@@ -25,8 +25,6 @@ return {
      },
      imAdmin: function(){
       let admins= this.partipants.filter((element:any)=> element.admin==`admin` )
-      console.log(this.partipants)
-      console.log(botphone)
       return admins.find((element:any)=>element.id==botphone)?true:false
      },
     groupTitle:groupData?.subject,
