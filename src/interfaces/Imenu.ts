@@ -1,10 +1,13 @@
 export interface Imenu {
-    text: string
+   image?:{url:string}
+    caption: string
     footer: string
-    buttons: {
-        buttonId: string,
-        buttonText: { displayText: string },
-        type: number
+    templateButtons: {
+        index: number,
+        urlButton?: { displayText: string ,url:string},
+        callButton?: { displayText: string },
+        quickReplyButton?: { displayText: string },
+      
     }[]
-    headerType: number
+  
 }

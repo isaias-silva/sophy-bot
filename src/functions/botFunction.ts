@@ -13,8 +13,9 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     const isSticker = webMessage.message?.stickerMessage ? true : false
     const isDocument = webMessage.message?.documentMessage ? true : false
     const isVideo = webMessage.message?.videoMessage ? true : false
-    const isGroup = webMessage.key.participant ? true : false
+    const isGroup = participant ? true : false
 const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage? true: false
+const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
     //enviar somente texto
     const sendText: Ibot["sendText"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt })
@@ -75,9 +76,9 @@ const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessa
         return socket.sendMessage(remoteJid, params, options)
     }
 
-    const sendmenu = async (object: Imenu) => {
+    const sendmenu = async (templateMessage: Imenu) => {
 
-        return socket.sendMessage(remoteJid, object)
+        return socket.sendMessage(remoteJid, templateMessage)
     }
 
     return {
@@ -97,6 +98,7 @@ const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessa
         isVideo,
         isGroup,
         isReply,
+        isButtonRes,
         webMessage,
         socket,
 

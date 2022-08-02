@@ -2,15 +2,22 @@ import { Ibot } from "../interfaces/Ibot";
 import path from "path"
 import { data } from "../config/data";
 import comandsList from "../config/comandsList";
-export async function menu(bot:Ibot){
+export async function menu(bot: Ibot) {
 
-    const {sendImage} = bot
-    let template = `
-    olá me chamo ${data.botname}, seguem os meus comandos: \n
-    `
-    comandsList.forEach((value)=>{
-        return template+=`\n |✪ *${data.prefix} ${value}*`
-    })
+    const { sendImage, sendmenu, webMessage } = bot
 
-   return sendImage(path.resolve(`assets`,`img`,`perfil.png`),template,true)
+    const buttons = [
+        { index: 1, urlButton: { displayText: 'criador', url: 'https://github.com/isaias-silva' } },
+        { index: 3, quickReplyButton: { displayText: 'comandos', id: '!comandos' } },
+
+    ]
+    const menu = {
+        image: { url: path.resolve('assets', 'img', 'perfil.webp') },
+        caption: `*numero de comandos*:  ${comandsList.length}\n*botname*:  ${data.botname}\n*dono*:  +${data.owner}`,
+        footer: 'desenvolvido por Zack black',
+        templateButtons: buttons,
+
+    }
+
+    return sendmenu(menu)
 }

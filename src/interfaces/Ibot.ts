@@ -34,4 +34,6 @@ export interface Ibot {
     isGroup: boolean
     //é reply?
     isReply: boolean
+    //é button
+    isButtonRes: boolean
 }

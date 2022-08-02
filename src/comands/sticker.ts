@@ -9,10 +9,17 @@ import ffmpegInstaller from "@ffmpeg-installer/ffmpeg"
 ffmpeg().setFfmpegPath(ffmpegInstaller.path)
 export async function sticker(bot: Ibot) {
     const { isImage, webMessage, sendSticker, reply, isVideo } = bot
-    await reply(`um segundinho...`)
+
+    const gifMessage = isVideo ? webMessage.message?.videoMessage : webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.videoMessage
 
     const imageMessage = isImage ? webMessage.message?.imageMessage : webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage
 
+    if (!imageMessage && !gifMessage) {
+        return reply(`marque uma imagem ou um gif com o comando *${data.prefix}sticker*
+ou envie uma imagem ou gif com o comando *${data.prefix}sticker* 😉`)
+    }
+
+    await reply(`um segundinho...`)
     if (imageMessage) {
         const file = await downloadImage(imageMessage)
         if (file) {
@@ -21,17 +28,16 @@ export async function sticker(bot: Ibot) {
             return await fs.unlinkSync(file)
         }
     }
-    const gif = isVideo ? webMessage.message?.videoMessage : webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.videoMessage
-    if (gif) {
+    if (gifMessage) {
 
-        let file = await downloadVideo(gif)
+        let file = await downloadVideo(gifMessage)
         if (file) {
             let newfile = file.replace(`.mp4`, `.webp`)
             return ffmpeg(file)
                 .format(`webp`)
                 .output(newfile)
                 .on(`end`, async () => {
-                    await sendSticker(newfile)
+                    await sendSticker(newfile, true)
                     fs.unlinkSync(newfile)
                     if (file) {
                         fs.unlinkSync(file)
@@ -44,8 +50,8 @@ export async function sticker(bot: Ibot) {
 
     }
 
-    return await reply(`putz nao consegui converter...
-    para criar figurinhas marque uma imagem com o comando *${data.prefix}sticker*
-    ou envie uma imagem`)
+    return await reply(`putz nao consegui converter...🙁
+para criar figurinhas marque uma imagem ou um gif com o comando *${data.prefix}sticker*
+ou envie uma imagem ou gif com o comando sticker!`)
 
 }
