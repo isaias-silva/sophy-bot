@@ -26,7 +26,7 @@ export async function bot() {
         }
         //se o comando nao existe
         const botF =  getBotfunctions(socket, wMessage)
-        
+     
         if (!searchComand(wMessage)) {
             
             return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)

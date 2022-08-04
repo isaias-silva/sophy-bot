@@ -8,10 +8,11 @@ import { menu } from "../comands/menu"
 import { sticker } from "../comands/sticker"
 import { comandos } from "../comands/comandos"
 import { toimg } from "../comands/toimg"
+import { ban } from "../comands/ban"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
-   
+
     if (!texto) { return }
     let prefix = texto.split("")[0]
     if (prefix == data.prefix) {
@@ -29,12 +30,12 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
         return false
     }
 }
-export function parameters(comand:string) {
- return comand.split(" ")
+export function parameters(comand: string) {
+    return comand.split(" ")
 }
 export async function caseComand(bot: Ibot) {
     const comand = parameters(extractComand(bot.webMessage.message))
-console.log(comand)
+    console.log(comand)
     switch (comand[0]) {
         case `menu`:
             await menu(bot)
@@ -44,14 +45,17 @@ console.log(comand)
             break
         case `comandos`:
             await comandos(bot)
-        break
+            break
         case `toimg`:
             await toimg(bot)
-        break
+            break
+        case `ban`:
+            await ban(bot, comand[1])
+            break
         default:
             await bot.reply('erro no comando ou comando nao existe')
-        break
-        
+            break
+
 
     }
 }

@@ -2,7 +2,8 @@ import { proto } from "@adiwajshing/baileys";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
 import { Imenu } from "../interfaces/Imenu";
-import { groupGetData } from "./extractGroupData";
+import { Igroup } from "../interfaces/Igroup";
+
 //exportando as funções do bot
 export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo): Ibot => {
     //ids
@@ -10,9 +11,46 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     const botInfo=socket.user
   
     //group data
-   
-    const groupData=groupGetData(socket,webMessage).then((data:any)=>{return data})
-
+      const  extractGroupData=async function ():Promise<Igroup> {
+        if(!isGroup){
+            return {}
+        }
+        const data=await socket.groupMetadata(webMessage.key.remoteJid)
+        
+        return {
+            groupTitle:data.subject,
+            groupJid:data.id,
+            partipants:data.participants,
+            locked:data.announce,
+            description: data.desc.toString()
+        }
+      }
+     const isAdmin= async function(id:string){
+          const data=await socket.groupMetadata(webMessage.key.remoteJid)
+            const {participants}=data
+         let admins= participants.filter((element:any)=>element.admin==`admin` || element.admin==`superadmin` )
+     
+      return admins.find((element:any)=>element.id==id)?true:false
+     }
+      const isSuperAdmin= async function(id:string){
+        const data=await socket.groupMetadata(webMessage.key.remoteJid)
+        const {participants}=data
+        let admins= participants.filter((element:any)=> element.admin==`superadmin` )
+       
+       return admins.find((element:any)=>element.id==id)?true:false
+       }
+    const imAdmin= async function () {
+        let botid=botInfo.id.split(`:`)
+      botid[1]=botid[1].split(`@`)
+      const botphone =botid[0]+`@`+botid[1][1]
+        const data=await socket.groupMetadata(webMessage.key.remoteJid)
+        const {participants}=data
+        console.log(botphone)
+        let admins= participants.filter((element:any)=> element.admin==`admin` || element.admin==`superadmin` )
+       
+       return admins.find((element:any)=>element.id==botphone)?true:false   
+    }
+      
     //booleans
 
     const isImage = webMessage.message?.imageMessage ? true : false
@@ -100,8 +138,12 @@ const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
         sendSticker,
         sendVideo,
         remoteJid,
+        participant,
         botInfo,
-        groupData,
+        isAdmin,
+        isSuperAdmin,
+        imAdmin,
+        extractGroupData,
         isImage,
         isAudio,
         isDocument,

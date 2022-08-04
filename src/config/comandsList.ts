@@ -1,1 +1,1 @@
-export default ['menu','sticker','comandos','toimg']
+export default ['menu','sticker','comandos','toimg','ban']
