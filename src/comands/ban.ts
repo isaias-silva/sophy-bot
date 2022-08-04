@@ -21,13 +21,14 @@ export async function ban(bot: Ibot, phoneid?: string) {
     let superadmin= await isSuperAdmin(number)
     let botadmin= await imAdmin()
 
+    if(!botadmin){
+        return reply('preciso ser adm para fazer isso!')
+    }
 
     if(!admin){
         return reply('apenas adms podem usar esse comando!')
     }
-    if(!botadmin){
-        return reply('preciso ser adm para executar essa função')
-    }
+
     if(superadmin){
         return reply('nao se pode remover o criador do grupo!')
     }
