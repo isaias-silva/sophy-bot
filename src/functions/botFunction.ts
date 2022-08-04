@@ -25,6 +25,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
             description: data.desc.toString()
         }
       }
+      //função que checa se id é de admin
      const isAdmin= async function(id:string){
           const data=await socket.groupMetadata(webMessage.key.remoteJid)
             const {participants}=data
@@ -32,6 +33,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
      
       return admins.find((element:any)=>element.id==id)?true:false
      }
+     //função que checa se id é de superadmin
       const isSuperAdmin= async function(id:string){
         const data=await socket.groupMetadata(webMessage.key.remoteJid)
         const {participants}=data
@@ -39,6 +41,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
        
        return admins.find((element:any)=>element.id==id)?true:false
        }
+    //função que checa se bot é admin
     const imAdmin= async function () {
         let botid=botInfo.id.split(`:`)
       botid[1]=botid[1].split(`@`)
@@ -53,25 +56,25 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
       
     //booleans
 
-    const isImage = webMessage.message?.imageMessage ? true : false
-    const isAudio = webMessage.message?.audioMessage ? true : false
-    const isSticker = webMessage.message?.stickerMessage ? true : false
-    const isDocument = webMessage.message?.documentMessage ? true : false
-    const isVideo = webMessage.message?.videoMessage ? true : false
-    const isGroup = participant ? true : false
-const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage? true: false
-const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false
+    const isImage = webMessage.message?.imageMessage ? true : false //se a webmessage tiver uma imagem
+    const isAudio = webMessage.message?.audioMessage ? true : false // se a webmessage tiver um audio
+    const isSticker = webMessage.message?.stickerMessage ? true : false //se a webmessage tiver uma figurinha
+    const isDocument = webMessage.message?.documentMessage ? true : false// se a webmessage tiver um doc
+    const isVideo = webMessage.message?.videoMessage ? true : false //se a webmessage tiver um video
+    const isGroup = participant ? true : false //se for grupo
+    const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage? true: false //se for resposta
+    const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false //se for uma resposta de botão
    
 
 //enviar somente texto
     const sendText: Ibot["sendText"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt })
     }
-    //responder mensagem
+//responder mensagem
     const reply = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt }, { quoted: webMessage })
     }
-    //marcar usuario
+//marcar usuario
     const mark = async (txt: string, id: string) => {
         return socket.sendMessage(remoteJid, { text: `@${id.split(`@`)[0]}, ${txt}`, mentions: [id] })
     }
