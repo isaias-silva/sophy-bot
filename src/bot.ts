@@ -31,7 +31,7 @@ export async function bot() {
             
             return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
         }
-       
+       //socket.profilePictureUrl()
         //sem barreiras, comandos seguem apartir daqui
        await caseComand(botF)
     })
