@@ -14,24 +14,24 @@ export async function bot() {
         const [wMessage] = msg.messages
         
         const message = wMessage.message
-       
+        
         //barreiras
         //se message nao existe
         if (!message) {
             return
         }
-        //se message nao tem o prefixo
         if (!isComand(message)) {
             return
         }
-        //se o comando nao existe
         const botF =  getBotfunctions(socket, wMessage)
+        //se message nao tem o prefixo
+        //se o comando nao existe
      
         if (!searchComand(wMessage)) {
             
             return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
         }
-
+       
         //sem barreiras, comandos seguem apartir daqui
        await caseComand(botF)
     })
