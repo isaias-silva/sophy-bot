@@ -100,4 +100,6 @@ OK
   <li><b>comandos:</b> exibe todos os comandos disponíveis do bot </li>
   <li><b>menu:</b> exibe as informações e o menu do bot</li>
   <li><b>sticker:</b> transforma gifs e imagens em figurinhas</li>
+   <li><b>toimg:</b> converter figurinha em imagem</li>
+    <li><b>ban:</b> remove usuario de grupo</li>
 </ul>
