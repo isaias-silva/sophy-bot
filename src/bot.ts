@@ -20,16 +20,17 @@ export async function bot() {
         if (!message) {
             return
         }
+        //se message nao tem o prefixo
         if (!isComand(message)) {
             return
         }
         const botF =  getBotfunctions(socket, wMessage)
-        //se message nao tem o prefixo
+        const {reply}=botF
         //se o comando nao existe
      
         if (!searchComand(wMessage)) {
             
-            return botF.reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
+            return reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
         }
        //socket.profilePictureUrl()
         //sem barreiras, comandos seguem apartir daqui
