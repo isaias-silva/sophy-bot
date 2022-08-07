@@ -102,4 +102,6 @@ OK
   <li><b>sticker:</b> transforma gifs e imagens em figurinhas</li>
    <li><b>toimg:</b> converter figurinha em imagem</li>
     <li><b>ban:</b> remove usuario de grupo</li>
+     <li><b>regras:</b> exibe a descrição do bot</li>
+      <li><b>marcar:</b> marcar todos os membros de um grupo</li>
 </ul>
