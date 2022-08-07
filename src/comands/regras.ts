@@ -20,7 +20,7 @@ export async function regras(bot: Ibot) {
     }
     //função:
     const data: Igroup = await extractGroupData()
-
+   
 
     return reply(`${data.groupTitle}
     ${data.description}

@@ -8,52 +8,52 @@ import { Igroup } from "../interfaces/Igroup";
 export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo): Ibot => {
     //ids
     const { remoteJid, participant } = webMessage.key
-    const botInfo=socket.user
-  
+    const botInfo = socket.user
+
     //group data
-      const  extractGroupData=async function ():Promise<Igroup> {
-        if(!isGroup){
+    const extractGroupData = async function (): Promise<Igroup> {
+        if (!isGroup) {
             return {}
         }
-        const data=await socket.groupMetadata(webMessage.key.remoteJid)
-        
+        const data = await socket.groupMetadata(webMessage.key.remoteJid)
+
         return {
-            groupTitle:data.subject,
-            groupJid:data.id,
-            partipants:data.participants,
-            locked:data.announce,
+            groupTitle: data.subject,
+            groupJid: data.id,
+            partipants: data.participants,
+            locked: data.announce,
             description: data.desc.toString()
         }
-      }
-      //função que checa se id é de admin
-     const isAdmin= async function(id:string){
-          const data=await socket.groupMetadata(webMessage.key.remoteJid)
-            const {participants}=data
-         let admins= participants.filter((element:any)=>element.admin==`admin` || element.admin==`superadmin` )
-     
-      return admins.find((element:any)=>element.id==id)?true:false
-     }
-     //função que checa se id é de superadmin
-      const isSuperAdmin= async function(id:string){
-        const data=await socket.groupMetadata(webMessage.key.remoteJid)
-        const {participants}=data
-        let admins= participants.filter((element:any)=> element.admin==`superadmin` )
-       
-       return admins.find((element:any)=>element.id==id)?true:false
-       }
-    //função que checa se bot é admin
-    const imAdmin= async function () {
-        let botid=botInfo.id.split(`:`)
-      botid[1]=botid[1].split(`@`)
-      const botphone =botid[0]+`@`+botid[1][1]
-        const data=await socket.groupMetadata(webMessage.key.remoteJid)
-        const {participants}=data
-        console.log(botphone)
-        let admins= participants.filter((element:any)=> element.admin==`admin` || element.admin==`superadmin` )
-       
-       return admins.find((element:any)=>element.id==botphone)?true:false   
     }
-      
+    //função que checa se id é de admin
+    const isAdmin = async function (id: string) {
+        const data = await socket.groupMetadata(webMessage.key.remoteJid)
+        const { participants } = data
+        let admins = participants.filter((element: any) => element.admin == `admin` || element.admin == `superadmin`)
+
+        return admins.find((element: any) => element.id == id) ? true : false
+    }
+    //função que checa se id é de superadmin
+    const isSuperAdmin = async function (id: string) {
+        const data = await socket.groupMetadata(webMessage.key.remoteJid)
+        const { participants } = data
+        let admins = participants.filter((element: any) => element.admin == `superadmin`)
+
+        return admins.find((element: any) => element.id == id) ? true : false
+    }
+    //função que checa se bot é admin
+    const imAdmin = async function () {
+        let botid = botInfo.id.split(`:`)
+        botid[1] = botid[1].split(`@`)
+        const botphone = botid[0] + `@` + botid[1][1]
+        const data = await socket.groupMetadata(webMessage.key.remoteJid)
+        const { participants } = data
+        console.log(botphone)
+        let admins = participants.filter((element: any) => element.admin == `admin` || element.admin == `superadmin`)
+
+        return admins.find((element: any) => element.id == botphone) ? true : false
+    }
+
     //booleans
 
     const isImage = webMessage.message?.imageMessage ? true : false //se a webmessage tiver uma imagem
@@ -62,21 +62,22 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     const isDocument = webMessage.message?.documentMessage ? true : false// se a webmessage tiver um doc
     const isVideo = webMessage.message?.videoMessage ? true : false //se a webmessage tiver um video
     const isGroup = participant ? true : false //se for grupo
-    const isReply= webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage? true: false //se for resposta
-    const isButtonRes=webMessage.message?.templateButtonReplyMessage?true:false //se for uma resposta de botão
-   
+    const isReply = webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage ? true : false //se for resposta
+    const isButtonRes = webMessage.message?.templateButtonReplyMessage ? true : false //se for uma resposta de botão
 
-//enviar somente texto
+
+    //enviar somente texto
     const sendText: Ibot["sendText"] = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt })
     }
-//responder mensagem
+    //responder mensagem
     const reply = async (txt: string) => {
         return socket.sendMessage(remoteJid, { text: txt }, { quoted: webMessage })
     }
-//marcar usuario
-    const mark = async (txt: string, id: string) => {
-        return socket.sendMessage(remoteJid, { text: `@${id.split(`@`)[0]}, ${txt}`, mentions: [id] })
+    //marcar usuario
+    const mark = async (txt: string, id: string[], isReply?: boolean) => {
+        let options = isReply == true ? { quoted: webMessage } : {}
+        return socket.sendMessage(remoteJid, { text: `${txt}`, mentions: id },options)
     }
     const sendImage = async (pathOrBuffer: Buffer | string, caption?: string, isReply?: boolean) => {
         const image = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);

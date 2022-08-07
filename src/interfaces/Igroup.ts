@@ -1,8 +1,8 @@
-export interface Igroup{
+export interface Igroup {
 
-    groupTitle?:string
-    groupJid?:string
-    partipants?:{}[]
-    locked?:boolean
-    description?:string
+    groupTitle?: string
+    groupJid?: string
+    partipants?: { id: string, admin: string }[]
+    locked?: boolean
+    description?: string
 }

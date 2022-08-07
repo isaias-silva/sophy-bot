@@ -10,6 +10,7 @@ import { comandos } from "../comands/comandos"
 import { toimg } from "../comands/toimg"
 import { ban } from "../comands/ban"
 import { regras } from "../comands/regras"
+import { marcar } from "../comands/marcar"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -55,6 +56,9 @@ export async function caseComand(bot: Ibot) {
             break
         case `regras`:
             await regras(bot)
+            break
+        case `marcar`:
+            await marcar(bot)
             break
         default:
             await bot.reply('erro no comando ou comando nao existe')

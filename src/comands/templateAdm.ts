@@ -1,6 +1,6 @@
 import { Ibot } from "../interfaces/Ibot";
 
-export async function ban(bot: Ibot) {
+export async function funcao(bot: Ibot) {
     const {isGroup, reply, webMessage, isAdmin, imAdmin } = bot
     const { participant } = webMessage.key
  
