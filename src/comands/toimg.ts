@@ -9,24 +9,28 @@ import ffmpegInstaller from "@ffmpeg-installer/ffmpeg"
 ffmpeg().setFfmpegPath(ffmpegInstaller.path)
 
 export async function toimg(bot: Ibot) {
-    const { isSticker, webMessage, sendImage, reply, isVideo,sendVideo } = bot
+    const { isSticker, webMessage, sendImage, reply, isVideo, sendVideo } = bot
 
-   const stickerMessage = isSticker ? webMessage.message?.stickerMessage: webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.stickerMessage
+    const stickerMessage = isSticker ? webMessage.message?.stickerMessage : webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.stickerMessage
 
-    if (!stickerMessage ) {
+    if (!stickerMessage) {
         return reply(`marque uma figurinha com o  comando *${data.prefix}toimg* 😉`)
     }
 
     await reply(`um segundinho...`)
     if (stickerMessage) {
+        
         const file = await downloadImage(stickerMessage)
+        console.log('passou')
+        
         if (file) {
             let converter = await sharp(file).resize(200, 200).png().toBuffer()
-            await sendImage(converter,'',true)
+            await sendImage(converter, '', true)
             return await fs.unlinkSync(file)
         }
+
     }
-  
+
 
     return await reply(`putz nao consegui converter... marque a sticker com o comando *${data.prefix}toimg*`)
 
