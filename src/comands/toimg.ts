@@ -19,12 +19,11 @@ export async function toimg(bot: Ibot) {
 
     await reply(`um segundinho...`)
     if (stickerMessage) {
-        
+
         const file = await downloadImage(stickerMessage)
-        console.log('passou')
-        
+
         if (file) {
-            let converter = await sharp(file).resize(200, 200).png().toBuffer()
+            let converter = await sharp(file).resize(200, 200).jpeg().toBuffer()
             await sendImage(converter, '', true)
             return await fs.unlinkSync(file)
         }
@@ -32,6 +31,6 @@ export async function toimg(bot: Ibot) {
     }
 
 
-    return await reply(`putz nao consegui converter... marque a sticker com o comando *${data.prefix}toimg*`)
+    return await reply(`putz nao consegui converter... marque a sticker com o comando *${data.prefix}toimg*\n ⚠️algumas figurinhas não são convertiveis como imagem.`)
 
 }
