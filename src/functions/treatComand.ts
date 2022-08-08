@@ -34,7 +34,7 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
     }
 }
 export function parameters(comand: string) {
-    return comand.split(" ")
+    return comand.split(" ").filter((x)=>{return x.length>1})
 }
 export async function caseComand(bot: Ibot) {
     const comand = parameters(extractComand(bot.webMessage.message))
