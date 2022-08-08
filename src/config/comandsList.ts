@@ -1,1 +1,1 @@
-export default ['menu','sticker','comandos','toimg','ban','regras','marcar']
+export default ['menu','sticker','comandos','toimg','ban','regras','marcar','ytdownload']

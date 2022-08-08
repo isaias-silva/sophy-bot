@@ -11,6 +11,7 @@ import { toimg } from "../comands/toimg"
 import { ban } from "../comands/ban"
 import { regras } from "../comands/regras"
 import { marcar } from "../comands/marcar"
+import { ytdownload } from "../comands/ytdownload"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -60,6 +61,9 @@ export async function caseComand(bot: Ibot) {
         case `marcar`:
             await marcar(bot)
             break
+        case `ytdownload`:
+            await ytdownload(bot,comand[1])
+        break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
