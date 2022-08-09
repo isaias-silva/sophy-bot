@@ -1,7 +1,8 @@
 import { Ibot } from "../interfaces/Ibot";
+import { Igroup } from "../interfaces/Igroup";
 
 export async function ban(bot: Ibot, phoneid?: string) {
-    const { socket, isGroup, isReply, reply, remoteJid, webMessage, isAdmin, isSuperAdmin, imAdmin } = bot
+    const { socket, isGroup, isReply, reply, remoteJid, webMessage, isAdmin, isSuperAdmin, imAdmin,extractGroupData } = bot
     const { participant } = webMessage.key
     const phonemark = webMessage.message?.extendedTextMessage?.contextInfo?.participant
 
@@ -30,7 +31,15 @@ export async function ban(bot: Ibot, phoneid?: string) {
     if (superadmin) {
         return reply('nao se pode remover o criador do grupo!')
     }
-
+    const group:Igroup=await extractGroupData()
+    if(!group){
+        return
+    }
+    const {partipants}=group
+    const exists=partipants?.find(element => element.id ==number)
+    if(!exists){
+        return reply(`user nao existe ou já foi removido`)
+    }
     try {
         await reply('removendo...')
         setTimeout(async () => {
