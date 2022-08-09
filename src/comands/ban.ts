@@ -5,11 +5,8 @@ export async function ban(bot: Ibot, phoneid?: string) {
     const { participant } = webMessage.key
     const phonemark = webMessage.message?.extendedTextMessage?.contextInfo?.participant
 
-    if (!participant) {
-        return
-    }
 
-    if (!isGroup) {
+    if (!isGroup || !participant) {
         return reply(`comando só usável em grupos!`)
     }
 
