@@ -13,6 +13,7 @@ import { regras } from "../comands/regras"
 import { marcar } from "../comands/marcar"
 import { ytdownload } from "../comands/ytdownload"
 import { playmusic } from "../comands/playMusic"
+import { playvideo } from "../comands/playVideo"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -73,6 +74,10 @@ export async function caseComand(bot: Ibot) {
 
             await playmusic(bot, comand[1])
             break
+            case `playvideo`:
+
+                await playvideo(bot, comand[1])
+                break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
