@@ -1,8 +1,6 @@
 import { proto } from "@adiwajshing/baileys"
 import { data } from "../config/data"
 import { Ibot } from "../interfaces/Ibot"
-import fs from 'fs'
-import path from 'path'
 import comandsList from "../config/comandsList"
 import { menu } from "../comands/menu"
 import { sticker } from "../comands/sticker"
@@ -14,6 +12,7 @@ import { marcar } from "../comands/marcar"
 import { ytdownload } from "../comands/ytdownload"
 import { playmusic } from "../comands/playMusic"
 import { playvideo } from "../comands/playVideo"
+import { dj } from "../comands/dj"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -78,6 +77,10 @@ export async function caseComand(bot: Ibot) {
 
                 await playvideo(bot, comand[1])
                 break
+            case `dj`:
+
+            await dj(bot, comand[1])
+            break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break

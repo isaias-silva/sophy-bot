@@ -1,7 +1,7 @@
 import ytdl from "ytdl-core";
 import fs from "fs";
 import path from "path";
-import yt from 'yt-search'
+
 import { randomtitle } from "./random";
 import yts from "yt-search";
 
@@ -43,5 +43,5 @@ export const downloadYtMusic = async function (link: string) {
 }
 export const searchVideo = async function (word: string) {
    const result = await yts(word)
-   return result.all[0]
+   return result.videos
 }

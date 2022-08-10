@@ -9,7 +9,7 @@ export async function playvideo(bot: Ibot, nome: string) {
     if (!nome) { return reply("envie o comando junto com o nome/tema do video") }
     await reply("carregando video...isso pode demorar um pouco...")
     const result = await searchVideo(nome)
-    const { url, title } = result
+    const { url, title } = result[0]
 
     const video = await downloadYtVideo(url)
     if (!video) {
