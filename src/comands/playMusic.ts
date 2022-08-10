@@ -19,8 +19,8 @@ export async function playmusic(bot: Ibot, nome: string) {
     }
     const image = await downloadAxios(thumbnail, 'png')
     await sendImage(image, title, true)
-    await sendAudio(music?.path, true)
     fs.unlinkSync(image)
+    await sendAudio(music?.path, true)
     fs.unlinkSync(music.path)
     return
 }
