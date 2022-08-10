@@ -104,4 +104,6 @@ OK
     <li><b>ban:</b> remove usuario de grupo</li>
      <li><b>regras:</b> exibe a descrição do bot</li>
       <li><b>marcar:</b> marcar todos os membros de um grupo</li>
+       <li><b>ytdownload:</b> baixa video do youtube e envia</li>
+        <li><b>playmusic:</b> procura musica no youtube e envia</li>
 </ul>
