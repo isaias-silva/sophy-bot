@@ -12,6 +12,7 @@ import { ban } from "../comands/ban"
 import { regras } from "../comands/regras"
 import { marcar } from "../comands/marcar"
 import { ytdownload } from "../comands/ytdownload"
+import { playmusic } from "../comands/playMusic"
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -34,10 +35,14 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
     }
 }
 export function parameters(comand: string) {
-    return comand.split(" ").filter((x)=>{return x.length>1})
+    const array= comand.split(" ").filter((x) => { return x.length > 1 })
+    let parametro=array.filter(element=>element!=array[0])
+  
+return [array[0],parametro.toString().replace(/\./g, " ")]
 }
 export async function caseComand(bot: Ibot) {
     const comand = parameters(extractComand(bot.webMessage.message))
+
     console.log(comand)
     switch (comand[0]) {
         case `menu`:
@@ -62,8 +67,12 @@ export async function caseComand(bot: Ibot) {
             await marcar(bot)
             break
         case `ytdownload`:
-            await ytdownload(bot,comand[1])
-        break
+            await ytdownload(bot, comand[1])
+            break
+        case `playmusic`:
+
+            await playmusic(bot, comand[1])
+            break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
