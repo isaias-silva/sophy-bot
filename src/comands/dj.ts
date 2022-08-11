@@ -1,8 +1,7 @@
 
-import { downloadYtMusic, downloadYtVideo, searchVideo } from "../functions/youtubeFunctions";
+import { downloadYtMusic, searchVideo } from "../functions/youtubeFunctions";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
-
 import path from "path"
 export async function dj(bot: Ibot, nome: string) {
 
@@ -13,8 +12,8 @@ export async function dj(bot: Ibot, nome: string) {
     
     const result = await searchVideo(nome)
    
-    for (let audio of result){
-    
+    for (let i=0; i<7; i++ ){
+        const [audio]=result
        const { url, thumbnail, title } = audio
        console.log(url)
        const music = await downloadYtMusic(url)
@@ -28,5 +27,5 @@ export async function dj(bot: Ibot, nome: string) {
    
 
    
-    return
+    return reply(`mix completo! som na caixa!`)
 }
