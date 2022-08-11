@@ -3,8 +3,9 @@ import { downloadYtMusic, searchVideo } from "../functions/youtubeFunctions";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
 import path from "path"
+import downloadAxios from "../functions/downloadAxios";
 export async function dj(bot: Ibot, nome: string) {
-
+downloadAxios
     const { sendImage, reply, sendAudio } = bot
 
     if (!nome) { return reply("envie o comando junto com o tema/artista da musica") }
@@ -20,6 +21,7 @@ export async function dj(bot: Ibot, nome: string) {
        if (!music) {
            return 
        }
+    
       await sendAudio(music?.path, true)
       fs.unlinkSync(music.path)
       
