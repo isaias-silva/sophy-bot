@@ -11,10 +11,10 @@ downloadAxios
     if (!nome) { return reply("envie o comando junto com o tema/artista da musica") }
     await sendImage(path.resolve("assets","img","dj.jpg"),"preparando seu mix de musicas",true)
     
-    const result = await searchVideo(nome)
-   
-    for (let i=0; i<7; i++ ){
-        const [audio]=result
+    const result = await (await searchVideo(nome)).filter(x=>x.duration.seconds<700)
+   let qtd=result.length>10?9:result.length
+    for (let i=0; i<qtd; i++ ){
+        const audio=result[i]
        const { url, thumbnail, title } = audio
        console.log(url)
        const music = await downloadYtMusic(url)
@@ -26,8 +26,6 @@ downloadAxios
       fs.unlinkSync(music.path)
       
     }
-   
-
-   
+    console.log(`complete`)
     return reply(`mix completo! som na caixa!`)
 }

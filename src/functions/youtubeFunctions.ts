@@ -27,7 +27,7 @@ export const downloadYtMusic = async function (link: string) {
    let title = randomtitle()
    let videoinfo = await ytdl.getInfo(link)
    let videocaption = videoinfo.videoDetails.title
-   const limit = 500
+   const limit = 700
    const duration = parseInt(videoinfo.videoDetails.lengthSeconds)
    if (duration > limit) {
       return null
