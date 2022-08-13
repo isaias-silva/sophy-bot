@@ -1,10 +1,11 @@
+//modules
 import ytdl from "ytdl-core";
+import yts from "yt-search";
 import fs from "fs";
 import path from "path";
 
 import { randomtitle } from "./random";
-import yts from "yt-search";
-
+//baixar video
 export const downloadYtVideo = async function (link: string) {
    let title = randomtitle()
    let videoinfo = await ytdl.getInfo(link)
@@ -23,6 +24,7 @@ export const downloadYtVideo = async function (link: string) {
    fs.writeFileSync(path.resolve("assets", "temp", `${title}.mp4`), buffer)
    return { path: path.resolve("assets", "temp", `${title}.mp4`), videocaption }
 }
+//baixar musica
 export const downloadYtMusic = async function (link: string) {
    let title = randomtitle()
    let videoinfo = await ytdl.getInfo(link)
@@ -41,6 +43,7 @@ export const downloadYtMusic = async function (link: string) {
    fs.writeFileSync(path.resolve("assets", "temp", `${title}.mp3`), buffer)
    return { path: path.resolve("assets", "temp", `${title}.mp3`), videocaption }
 }
+//procurar video
 export const searchVideo = async function (word: string) {
    const result = await yts(word)
    return result.videos

@@ -1,6 +1,8 @@
+//modules
 import { proto } from "@adiwajshing/baileys";
-import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
+//interfaces
+import { Ibot } from "../interfaces/Ibot";
 import { Imenu } from "../interfaces/Imenu";
 import { Igroup } from "../interfaces/Igroup";
 
@@ -33,7 +35,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
 
         return admins.find((element: any) => element.id == id) ? true : false
     }
-    //função que checa se id é de superadmin
+    //função que checa se id é de superadmin(criador do grupo)
     const isSuperAdmin = async function (id: string) {
         const data = await socket.groupMetadata(webMessage.key.remoteJid)
         const { participants } = data
@@ -79,6 +81,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, { text: `${txt}`, mentions: id },options)
     }
+    //enviar imagem
     const sendImage = async (pathOrBuffer: Buffer | string, caption?: string, isReply?: boolean) => {
         const image = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
         const params = {
@@ -88,6 +91,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
+    //enviar sticker
     const sendSticker = async (pathOrBuffer: string | Buffer, isReply?: boolean) => {
         let options = {};
 
@@ -104,6 +108,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
 
         return await socket.sendMessage(remoteJid, { sticker }, options);
     }
+    //enviar Audio
     const sendAudio = async (pathOrBuffer: Buffer | string, isReply?: boolean, ptt?: boolean) => {
         const audio = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
         const params = {
@@ -115,6 +120,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
+    //enviar Video
     const sendVideo = async (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => {
         const video = pathOrBuffer instanceof Buffer ? pathOrBuffer : fs.readFileSync(pathOrBuffer);
         const params = {
@@ -126,12 +132,12 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
-
+//enviar Menu
     const sendmenu = async (templateMessage: Imenu) => {
 
         return socket.sendMessage(remoteJid, templateMessage)
     }
-
+//retornando todas as funções
     return {
         sendText,
         reply,

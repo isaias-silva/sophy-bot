@@ -1,7 +1,10 @@
-import { downloadContentFromMessage, getErrorCodeFromStreamError, proto } from "@adiwajshing/baileys";
+//modules
 import fs from 'fs'
 import path from 'path'
+//funções
+import { downloadContentFromMessage, proto } from "@adiwajshing/baileys";
 import { randomtitle } from "./random";
+//baixar imagem de mensagem
 export async function downloadImage(contentMsg: proto.IImageMessage) {
     
     const filename = randomtitle()
@@ -23,15 +26,15 @@ export async function downloadImage(contentMsg: proto.IImageMessage) {
            return path.resolve('assets', 'temp', `${filename}.${filetype}`)
        
        } catch (err) {
-           console.log(err)
+           console.log(`erro ao escrever arquivo:\n ${err}`)
            return null
        }
    }
    catch(err){
-    console.log('erro sério\n'+err)
-    return null
-   }
+    console.log('erro no stream \n'+err)
+    return null}
 }
+//baixar video de mensagem
 export async function downloadVideo(contentMsg: proto.IVideoMessage) {
 
     const filename = randomtitle()
@@ -56,6 +59,7 @@ export async function downloadVideo(contentMsg: proto.IVideoMessage) {
         return null
     }
 }
+//baixar audio de mensagem
 export async function downloadAudio(contentMsg: proto.IVideoMessage) {
 
     const filename = randomtitle()

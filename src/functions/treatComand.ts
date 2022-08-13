@@ -1,7 +1,12 @@
-import { proto } from "@adiwajshing/baileys"
+//dados do bot
 import { data } from "../config/data"
-import { Ibot } from "../interfaces/Ibot"
 import comandsList from "../config/comandsList"
+//proto
+import { proto } from "@adiwajshing/baileys"
+//interface
+import { Ibot } from "../interfaces/Ibot"
+//funções de comandos
+
 import { menu } from "../comands/menu"
 import { sticker } from "../comands/sticker"
 import { comandos } from "../comands/comandos"
@@ -13,6 +18,8 @@ import { ytdownload } from "../comands/ytdownload"
 import { playmusic } from "../comands/playMusic"
 import { playvideo } from "../comands/playVideo"
 import { dj } from "../comands/dj"
+
+//checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
 
     const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
@@ -23,6 +30,7 @@ export function isComand(message: proto.IMessage) {
         return true
     } else return false
 }
+//procurar comando da comandlist
 export function searchComand(Webmessage: proto.IWebMessageInfo) {
     const { message } = Webmessage
 
@@ -34,12 +42,14 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
         return false
     }
 }
+//extrair parametro
 export function parameters(comand: string) {
     const array= comand.split(" ").filter((x) => { return x.length > 1 })
     let parametro=array.filter(element=>element!=array[0])
   
 return [array[0],parametro.toString().replace(/\./g, " ")]
 }
+//cases de comandos
 export async function caseComand(bot: Ibot) {
     const comand = parameters(extractComand(bot.webMessage.message))
 
@@ -88,6 +98,7 @@ export async function caseComand(bot: Ibot) {
 
     }
 }
+//extrair comando da mensagem
 export function extractComand(msg: proto.IMessage | any) {
     const texto = msg.conversation || msg.imageMessage?.caption || msg.extendedTextMessage?.text || msg.videoMessage?.caption || msg.templateButtonReplyMessage?.selectedId
     const comand = texto?.replace(data.prefix, "")

@@ -2,7 +2,7 @@
 import { data } from "./config/data";
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
-
+//funções de tratamento de comandos
 import { caseComand, isComand, searchComand } from "./functions/treatComand";
 
 //exportando a inicialização do bot
@@ -11,10 +11,9 @@ export async function bot() {
     const socket = await connect()
     //socket monitorando evento de messagem recebida
     socket.ev.on('messages.upsert', async (msg) => {
+        //extraindo mensagem
         const [wMessage] = msg.messages
-        
         const message = wMessage.message
-        
         //barreiras
         //se message nao existe
         if (!message) {
@@ -24,6 +23,7 @@ export async function bot() {
         if (!isComand(message)) {
             return
         }
+        //buscando funções do bot
         const botF =  getBotfunctions(socket, wMessage)
         const {reply}=botF
         //se o comando nao existe
@@ -32,7 +32,6 @@ export async function bot() {
             
             return reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
         }
-       //socket.profilePictureUrl()
         //sem barreiras, comandos seguem apartir daqui
        await caseComand(botF)
     })

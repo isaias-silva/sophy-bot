@@ -1,3 +1,4 @@
+//interface de grupo
 export interface Igroup {
 
     groupTitle?: string

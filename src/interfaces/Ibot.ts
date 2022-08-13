@@ -1,11 +1,12 @@
+//proto
 import { proto } from "@adiwajshing/baileys";
+//interfaces
 import { Igroup } from "./Igroup";
-
 import { Imenu } from "./Imenu";
+
 //interface do bot
 export interface Ibot {
     botInfo: { id: string, name: string }
-
     //enviar apenas texto
     sendText: (txt: string) => Promise<proto.WebMessageInfo>,
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
