@@ -6,9 +6,15 @@ export async function comandos(bot:Ibot){
 
     const {sendImage} = bot
     let template = `⚙️ olá me chamo ${data.botname}, seguem todos os meus comandos:\n`
-    comandsList.forEach((value)=>{
-        return template+=`\n |✪ *${data.prefix} ${value}*`
+   
+    template+=`\n*👑FUNÇÕES ADMIN👑*\n`
+    comandsList.filter(x=>x.admin).forEach((value)=>{
+        return template+=`\n |✪ *${data.prefix}* ${value.comand}`
     })
-
-   return sendImage(path.resolve(`assets`,`img`,`perfil.webp`),template,true)
+    template+='\n'
+    template+=`\n🧢*FUNÇÕES MEMBROS*🧢\n`
+    comandsList.filter(x=>!x.admin).forEach((value)=>{
+        return template+=`\n |✪ *${data.prefix}* ${value.comand}`
+    })
+    return sendImage(path.resolve(`assets`,`img`,`perfil.webp`),template,true)
 }
