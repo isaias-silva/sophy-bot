@@ -1,7 +1,7 @@
 ﻿# sophy-bot
 
 <div style="display: flex; justfy-content: center; align-itens: center;">
-<img style="width: 300px;" src="./image.png">
+<img align="center" style="width: 300px;" src="./image.png">
 </div>
 
 > Status do Projeto: Em desenvolvimento :warning:
@@ -16,8 +16,10 @@
 
 ## bibliotecas
 <div>
-<img src="https://img.shields.io/static/v1?label=npm&message=baileys&color=orange">
-<img src="https://img.shields.io/static/v1?label=npm&message=axios&color=orange">
+<img src="https://img.shields.io/static/v1?label=yarn&message=baileys&color=blue">
+<img src="https://img.shields.io/static/v1?label=yarn&message=axios&color=blue">
+<img src="https://img.shields.io/static/v1?label=yarn&message=ytdl&color=blue">
+<img src="https://img.shields.io/static/v1?label=yarn&message=ffmpeg&color=blue">
 </div>
 
 
