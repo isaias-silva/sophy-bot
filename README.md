@@ -1,7 +1,7 @@
 ﻿# sophy-bot
 
 <div style="display: flex; justfy-content: center; align-itens: center;">
-<img align="center" style="width: 300px;" src="./image.png">
+<img style="width: 300px;" src="./image.png">
 </div>
 
 > Status do Projeto: Em desenvolvimento :warning:
@@ -16,10 +16,25 @@
 
 ## bibliotecas
 <div>
-<img src="https://img.shields.io/static/v1?label=yarn&message=baileys&color=blue">
-<img src="https://img.shields.io/static/v1?label=yarn&message=axios&color=blue">
-<img src="https://img.shields.io/static/v1?label=yarn&message=ytdl&color=blue">
-<img src="https://img.shields.io/static/v1?label=yarn&message=ffmpeg&color=blue">
+<a href="https://www.npmjs.com/package/@adiwajshing/baileys">
+<img src="https://img.shields.io/static/v1?label=npm&message=baileys&color=blue">
+</a>
+<a href="https://www.npmjs.com/package/axios">
+
+<img src="https://img.shields.io/static/v1?label=npm&message=axios&color=blue">
+</a>
+<a href="https://www.npmjs.com/package/ytdl-core">
+<img src="https://img.shields.io/static/v1?label=npm&message=ytdl-core&color=blue">
+
+</a>
+<a href="https://www.npmjs.com/package/ffmpeg">
+<img src="https://img.shields.io/static/v1?label=npm&message=ffmpeg&color=blue">
+
+</a>
+<a href="https://www.npmjs.com/package/sharp">
+<img src="https://img.shields.io/static/v1?label=npm&message=sharp&color=blue">
+
+</a>
 </div>
 
 
