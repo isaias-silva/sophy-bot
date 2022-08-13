@@ -107,4 +107,5 @@ OK
        <li><b>ytdownload:</b> baixa video do youtube e envia</li>
         <li><b>playmusic:</b> procura musica no youtube e envia</li>
         <li><b>playvideo:</b> procura video no youtube e envia</li>
+        <li><b>dj:</b> enviar mix de musicas de alguma banda/cantor(a)</li>
 </ul>
