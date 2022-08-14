@@ -41,6 +41,7 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+cache/*
 
 # formats temp media
 assets/temp/*.png

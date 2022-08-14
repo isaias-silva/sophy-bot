@@ -47,7 +47,7 @@ export function parameters(comand: string) {
     const array= comand.split(" ").filter((x) => { return x.length > 1 })
     let parametro=array.filter(element=>element!=array[0])
   
-return [array[0],parametro.toString().replace(/\./g, " ")]
+return [array[0],parametro.toString().replace(/,/g, " ")]
 }
 //cases de comandos
 export async function caseComand(bot: Ibot) {
