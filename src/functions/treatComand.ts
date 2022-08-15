@@ -18,6 +18,7 @@ import { ytdownload } from "../comands/ytdownload"
 import { playmusic } from "../comands/playMusic"
 import { playvideo } from "../comands/playVideo"
 import { dj } from "../comands/dj"
+import { antiLink } from "../comands/antiLink"
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -91,6 +92,9 @@ export async function caseComand(bot: Ibot) {
 
             await dj(bot, comand[1])
             break
+            case `antilink`:
+                antiLink(bot,comand[1])
+                break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
