@@ -22,7 +22,9 @@ export async function bot() {
             return
         }
         
-        if(isLink(message))
+        if(wMessage.key.participant){
+            
+        }
         //se message nao tem o prefixo
         if (!isComand(message)) {
             return

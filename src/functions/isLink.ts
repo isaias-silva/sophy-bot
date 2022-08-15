@@ -10,7 +10,7 @@ export function isLink(message: proto.IMessage) {
         response=true
     }
     console.log(text?.search(/(https?:\/\/[^\s]+)/g))
-   // console.log(`${text} is link? ${response}`)
+   console.log(`${text} is link? ${response}`)
  
     return response
 }
