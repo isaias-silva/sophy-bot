@@ -1,6 +1,6 @@
 ﻿# sophy-bot
 
-<div style="display: flex; justfy-content: center; align-itens: center;">
+<div align="center">
 <img style="width: 300px;" src="./image.png">
 </div>
 
