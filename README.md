@@ -45,6 +45,7 @@ o objetivo do bot é auxiliar em administração de grupos de whatsapp.
 </p>
 
 ### funções 
+<div align="center">
 <table>
 <tr>
 <th>
@@ -111,7 +112,7 @@ OK
 </td>
   </tr>
 </table>
-
+</div>
 ## comandos
 <ul>
   <li><b>comandos:</b> exibe todos os comandos disponíveis do bot </li>
