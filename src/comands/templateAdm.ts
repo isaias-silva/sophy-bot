@@ -20,5 +20,5 @@ export async function funcao(bot: Ibot) {
     }
     //função:
 
-  
+ 
 }
