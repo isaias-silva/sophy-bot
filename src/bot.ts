@@ -2,6 +2,7 @@
 import { data } from "./config/data";
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
+import { isLink } from "./functions/isLink";
 //funções de tratamento de comandos
 import { caseComand, isComand, searchComand } from "./functions/treatComand";
 
@@ -11,6 +12,7 @@ export async function bot() {
     const socket = await connect()
     //socket monitorando evento de messagem recebida
     socket.ev.on('messages.upsert', async (msg) => {
+        
         //extraindo mensagem
         const [wMessage] = msg.messages
         const message = wMessage.message
@@ -19,6 +21,8 @@ export async function bot() {
         if (!message) {
             return
         }
+        
+        if(isLink(message))
         //se message nao tem o prefixo
         if (!isComand(message)) {
             return
