@@ -28,7 +28,7 @@ export async function bot() {
         const {reply,isAdmin,participant,remoteJid}=botF
         if(participant){
          const caminho=path.resolve("cache","antilink.json")
-         const isAntilink=toJsonArrays(caminho).find(element=>element.id==wMessage.key.remoteJid)
+         const isAntilink=toJsonArrays(caminho).find(element=>element.id==wMessage.key.remoteJid && element.ative===true)
          if(isAntilink){
             if(isLink(message)){
                 const isAdm=await isAdmin(participant)

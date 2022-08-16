@@ -50,7 +50,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         const botphone = botid[0] + `@` + botid[1][1]
         const data = await socket.groupMetadata(webMessage.key.remoteJid)
         const { participants } = data
-        console.log(botphone)
+
         let admins = participants.filter((element: any) => element.admin == `admin` || element.admin == `superadmin`)
 
         return admins.find((element: any) => element.id == botphone) ? true : false
@@ -79,7 +79,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     //marcar usuario
     const mark = async (txt: string, id: string[], isReply?: boolean) => {
         let options = isReply == true ? { quoted: webMessage } : {}
-        return socket.sendMessage(remoteJid, { text: `${txt}`, mentions: id },options)
+        return socket.sendMessage(remoteJid, { text: `${txt}`, mentions: id }, options)
     }
     //enviar imagem
     const sendImage = async (pathOrBuffer: Buffer | string, caption?: string, isReply?: boolean) => {
@@ -126,18 +126,18 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         const params = {
             video,
             caption: caption,
-            
+
 
         }
         let options = isReply == true ? { quoted: webMessage } : {}
         return socket.sendMessage(remoteJid, params, options)
     }
-//enviar Menu
+    //enviar Menu
     const sendmenu = async (templateMessage: Imenu) => {
 
         return socket.sendMessage(remoteJid, templateMessage)
     }
-//retornando todas as funções
+    //retornando todas as funções
     return {
         sendText,
         reply,
