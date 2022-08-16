@@ -36,16 +36,23 @@ export async function antiLink(bot: Ibot, param: string) {
         }
        
       
-        const exist=list.find(element => element.id == obj.id && element.ative===true)
+        const exist=list.find(element => element.id == obj.id)
        if(exist){
+        if(exist.ative){
         return reply(`já ativado!`)
-       }
-        list.push(obj)
+        }else{
+            list.map((item)=>{if(item.id==remoteJid){
+                item.ative=true
+            }})
+        }
+       }else{
+       
+        list.push(obj)}
         fs.writeFileSync(path.resolve(`cache`,`antilink.json`),JSON.stringify(list))
         return reply(`antilink ativado!`)
     case `off`:
        
-           const groupExists= list.find(element=>element.id==remoteJid && element.ative===false)
+           const groupExists= list.find(element=>element.id==remoteJid && element.ative==false)
            if(groupExists){
             return reply(`antilink foi desativado aqui, para reativar digite *${data.prefix}antilink on*`)
            }
