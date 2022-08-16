@@ -19,6 +19,8 @@ import { playmusic } from "../comands/playMusic"
 import { playvideo } from "../comands/playVideo"
 import { dj } from "../comands/dj"
 import { antiLink } from "../comands/antiLink"
+import { antiFake } from "../comands/antiFake"
+import { boasVindas } from "../comands/boasVindas"
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -95,6 +97,12 @@ export async function caseComand(bot: Ibot) {
             case `antilink`:
                 antiLink(bot,comand[1])
                 break
+            case `antifake`:
+                antiFake(bot,comand[1])
+                break
+            case `boasvindas`:
+                boasVindas(bot,comand[1])    
+            break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break

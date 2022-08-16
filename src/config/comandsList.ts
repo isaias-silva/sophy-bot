@@ -7,6 +7,8 @@ export default [
     {comand:'regras',admin:true},
     {comand:'marcar',admin:true},
     {comand:'antilink',admin:true},
+    {comand:'antifake',admin:true},
+    {comand:'boasvindas',admin:true},
     {comand:'ytdownload'},
     {comand:'playmusic'},
     {comand:'playvideo'},
