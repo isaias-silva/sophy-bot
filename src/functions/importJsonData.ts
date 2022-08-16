@@ -1,9 +1,9 @@
 import { IatributeGroup } from "../interfaces/IatributeGroup"
 import  path  from "path"
 import  fs  from "fs"
-export const antiLinkgroups=function(){
+export const toJsonArrays=function(caminho:string){
     
-    const caminho=path.resolve(`cache`,`antilink.json`)
+   
     try{
         fs.readFileSync(caminho)}
         catch{

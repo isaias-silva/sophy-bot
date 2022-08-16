@@ -1,8 +1,10 @@
 //modules
+import path from 'path'
 import { data } from "./config/data";
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
-import { antiLinkgroups } from "./functions/importJsonData";
+import { toJsonArrays } from './functions/importJsonData';
+
 import { isLink } from "./functions/isLink";
 //funções de tratamento de comandos
 import { caseComand, isComand, searchComand } from "./functions/treatComand";
@@ -25,23 +27,24 @@ export async function bot() {
         const botF =  getBotfunctions(socket, wMessage)
         const {reply,isAdmin,participant,remoteJid}=botF
         if(participant){
-         
-         const isAntilink=antiLinkgroups().find(element=>element.id==wMessage.key.remoteJid)
+         const caminho=path.resolve("cache","antilink.json")
+         const isAntilink=toJsonArrays(caminho).find(element=>element.id==wMessage.key.remoteJid)
          if(isAntilink){
             if(isLink(message)){
                 const isAdm=await isAdmin(participant)
                 if(!isAdm){
                 reply(`eu já avisei:\n*proibido link no grupo!* olha o ban chegando..🗡️🗡️🗡️`)
                 if(!remoteJid){ return}
-                setTimeout(async()=>{
+               return setTimeout(async()=>{
                     await socket.groupParticipantsUpdate(
                         remoteJid,
                         [participant],
                         "remove"
                     )
+                    return reply(`😊 espero que não sigam o exemplo aí em cima e sigam as regras`);
                 },3000)
               
-                    return reply(`😊 espero não sigam o exemplo aí em cima e sigam as regras`)
+                    
                    
                 }
                 return reply(`adm mandou link, mas nao vou remover porque sou contra a revolta das máquinas💆`)

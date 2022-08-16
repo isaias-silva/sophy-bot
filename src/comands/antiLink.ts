@@ -3,7 +3,8 @@ import path from 'path'
 import fs from 'fs'
 import { IatributeGroup } from "../interfaces/IatributeGroup";
 import { data } from "../config/data";
-import { antiLinkgroups } from "../functions/importJsonData";
+import { toJsonArrays } from "../functions/importJsonData";
+
 export async function antiLink(bot: Ibot, param: string) {
     const { isGroup, reply, webMessage, isAdmin, imAdmin,remoteJid } = bot
     const { participant } = webMessage.key
@@ -25,7 +26,8 @@ export async function antiLink(bot: Ibot, param: string) {
     if (!param) {
         return reply("use on/off para ativar");
     }
-    const list:IatributeGroup[]=antiLinkgroups()
+    const caminho=path.resolve("cache","antilink.json")
+    const list:IatributeGroup[]=toJsonArrays(caminho)
    switch(param){
     case `on`:
         let obj={
@@ -47,7 +49,7 @@ export async function antiLink(bot: Ibot, param: string) {
            if(!groupExists){
             return reply(`antilink nao foi ativado aqui, para ativar digite *${data.prefix}antilink on*`)
            }
-           list.splice(list.indexOf(groupExists),1)
+           list.map((item)=>{if(item.id===remoteJid){item.ative=false}})
            fs.writeFileSync(path.resolve(`cache`,`antilink.json`),JSON.stringify(list))
            return reply(`antilink desativado`)
     break
