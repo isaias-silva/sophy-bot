@@ -126,4 +126,5 @@ OK
         <li><b>playvideo:</b> procura video no youtube e envia</li>
         <li><b>dj:</b> enviar mix de musicas de alguma banda/cantor(a)</li>
          <li><b>antilink:</b> proibe link</li>
+         <li><b>antifake:</b> proibe numeros fakes/estrangeiros nos grupos</li>
 </ul>
