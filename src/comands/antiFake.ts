@@ -57,7 +57,7 @@ export async function antiFake(bot: Ibot, param: string) {
             return reply(`antifake foi desativado aqui, para reativar digite *${data.prefix}antifake on*`)
            }
            list.map((item)=>{if(item.id===remoteJid){item.ative=false}})
-           fs.writeFileSync(path.resolve(`cache`,`antilink.json`),JSON.stringify(list))
+           fs.writeFileSync(path.resolve(`cache`,`antifake.json`),JSON.stringify(list))
            return reply(`antifake desativado`)
    
     default:

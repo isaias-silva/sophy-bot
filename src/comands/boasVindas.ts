@@ -49,7 +49,7 @@ export async function boasVindas(bot: Ibot, param: string) {
        
         list.push(obj)}
         fs.writeFileSync(path.resolve(`cache`,`boasvindas.json`),JSON.stringify(list))
-        return reply(`antifake ativado!`)
+        return reply(`boas vindas ativado!`)
     case `off`:
        
            const groupExists= list.find(element=>element.id==remoteJid && element.ative==false)

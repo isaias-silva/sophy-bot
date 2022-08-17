@@ -1,8 +1,11 @@
 //modules
+import fs from 'fs'
 import path from 'path'
 import { data } from "./config/data";
 import { connect } from "./connection";
 import { getBotfunctions } from "./functions/botFunction";
+import downloadAxios from './functions/downloadAxios';
+import extractAreaCode from './functions/extractAreaCode';
 import { toJsonArrays } from './functions/importJsonData';
 
 import { isLink } from "./functions/isLink";
@@ -13,6 +16,46 @@ import { caseComand, isComand, searchComand } from "./functions/treatComand";
 export async function bot() {
     //conectando
     const socket = await connect()
+    //novos participantes
+    socket.ev.on('group-participants.update',async (data)=>{
+        const{action,id,participants}=data
+        if(action!='add' && action!='remove'){
+            return
+        }
+        if(action==='add'){
+            const [participant]=participants
+            let numberParticipant=participant.split("@")[0]
+
+            const caminhoAntf=path.resolve("cache","antifake.json") 
+            const isAntiFake=toJsonArrays(caminhoAntf).find(element=>element.id==id && element.ative===true)
+            if(isAntiFake){
+               let areacode= extractAreaCode(numberParticipant)    
+               if(areacode!='55'){
+                return setTimeout(async ()=>{
+                    await socket.groupParticipantsUpdate(id,participants,"remove")
+                    await socket.sendMessage(id, {text:'aqui é proibido fake! capiche?'})
+                },3000)
+                
+               }
+            }
+            const caminhoBoas=path.resolve("cache","boasvindas.json")
+            
+            const isGroupBemvindo=toJsonArrays(caminhoBoas).find(element=>element.id==id && element.ative===true)
+            if(!isGroupBemvindo){
+                return
+            }
+           
+            const imageUrl= await socket.profilePictureUrl(participant,"image")
+            if(imageUrl){
+                const image=await downloadAxios(imageUrl,"png")
+            
+               await socket.sendMessage(id,{image:{url:image},caption:`seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`,mentions:participants})
+              return fs.unlinkSync(image)
+            }
+    
+           return socket.sendMessage(id,{text:`seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`,mentions:participants})
+        }
+    })
     //socket monitorando evento de messagem recebida
     socket.ev.on('messages.upsert', async (msg) => {
         
