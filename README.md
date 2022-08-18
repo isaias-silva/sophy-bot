@@ -2,10 +2,14 @@
 
 <div align="center">
 <img style="width: 300px;" src="./image.png">
+
+> Status do Projeto: concluido ✅
+
+
 <img style="width: 500px;" src='./print.jpeg'>
 </div>
 
-> Status do Projeto: concluido ✅
+
 
 
 ## tecnologias
