@@ -5,7 +5,8 @@
 </div>
 
 > Status do Projeto: concluido ✅
-<img src='./print.jpeg'>
+<img style="width: 400px;" align="center" src='./print.jpeg'>
+
 ## tecnologias
 <div>
 <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
