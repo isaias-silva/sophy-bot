@@ -1,5 +1,4 @@
 import { IatributeGroup } from "../interfaces/IatributeGroup"
-import  path  from "path"
 import  fs  from "fs"
 export const toJsonArrays=function(caminho:string){
     
