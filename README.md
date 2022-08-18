@@ -134,3 +134,10 @@ OK
          <li><b>antilink:</b> proibe link</li>
          <li><b>antifake:</b> proibe numeros fakes/estrangeiros nos grupos</li>
 </ul>
+
+### 🔧 instalação:
+>bash install.sh
+
+### ▶️ iniciar:
+>bash start.sh
+
