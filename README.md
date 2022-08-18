@@ -1,9 +1,11 @@
 ﻿# sophy-bot
 
+> Status do Projeto: concluido ✅
+
 <div align="center">
 <img style="width: 300px;" src="./image.png">
 
-> Status do Projeto: concluido ✅
+
 <div>
 <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
