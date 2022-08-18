@@ -16,3 +16,4 @@ O)) O))   O))    O))     O))  O))   O))   O)) O))     O))       O))
 
 
 yarn install
+bash start.sh
