@@ -4,7 +4,7 @@
 <img style="width: 300px;" src="./image.png">
 </div>
 
-> Status do Projeto: Em desenvolvimento :warning:
+> Status do Projeto: concluido ✅
 
 ## tecnologias
 <div>
