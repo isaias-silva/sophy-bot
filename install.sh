@@ -14,6 +14,6 @@ O)) O))   O))    O))     O))  O))   O))   O)) O))     O))       O))
 
 "
 
-
+pkg install nodejs
 yarn install
 bash start.sh
