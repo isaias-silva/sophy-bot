@@ -8,6 +8,7 @@ import { randomtitle } from "./random";
 //baixar video
 export const downloadYtVideo = async function (link: string) {
    let title = randomtitle()
+  
    let videoinfo = await ytdl.getInfo(link)
    let videocaption = videoinfo.videoDetails.title
    const limit = 660
@@ -34,7 +35,7 @@ export const downloadYtMusic = async function (link: string) {
    if (duration > limit) {
       return null
    }
-   const stream = ytdl(link,{filter:"audio"})
+  const stream = ytdl(link,{filter:"audio"})
    let buffer = Buffer.from([])
    for await (const chunk of stream) {
 

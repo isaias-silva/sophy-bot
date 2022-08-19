@@ -26,7 +26,7 @@ export async function bot() {
         if (action === 'add') {
             const [participant] = participants
             let numberParticipant = participant.split("@")[0]
-
+            
             const caminhoAntf = path.resolve("cache", "antifake.json")
             const isAntiFake = toJsonArrays(caminhoAntf).find(element => element.id == id && element.ative === true)
             if (isAntiFake) {
