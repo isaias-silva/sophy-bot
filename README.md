@@ -135,9 +135,7 @@ OK
          <li><b>antifake:</b> proibe numeros fakes/estrangeiros nos grupos</li>
 </ul>
 
-### 🔧 instalação:
+### 🔧 instalação(linux):
 >bash install.sh
-
-### ▶️ iniciar:
 >bash start.sh
 
