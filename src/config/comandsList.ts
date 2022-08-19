@@ -9,6 +9,7 @@ export default [
     {comand:'antilink',admin:true},
     {comand:'antifake',admin:true},
     {comand:'boasvindas',admin:true},
+    {comand:'antivendas',admin:true},
     {comand:'ytdownload'},
     {comand:'playmusic'},
     {comand:'playvideo'},

@@ -21,6 +21,7 @@ import { dj } from "../comands/dj"
 import { antiLink } from "../comands/antiLink"
 import { antiFake } from "../comands/antiFake"
 import { boasVindas } from "../comands/boasVindas"
+import { antiVendas } from "../comands/antiVendas"
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -47,10 +48,10 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
 }
 //extrair parametro
 export function parameters(comand: string) {
-    const array= comand.split(" ").filter((x) => { return x.length > 1 })
-    let parametro=array.filter(element=>element!=array[0])
-  
-return [array[0],parametro.toString().replace(/,/g, " ")]
+    const array = comand.split(" ").filter((x) => { return x.length > 1 })
+    let parametro = array.filter(element => element != array[0])
+
+    return [array[0], parametro.toString().replace(/,/g, " ")]
 }
 //cases de comandos
 export async function caseComand(bot: Ibot) {
@@ -86,23 +87,26 @@ export async function caseComand(bot: Ibot) {
 
             await playmusic(bot, comand[1])
             break
-            case `playvideo`:
+        case `playvideo`:
 
-                await playvideo(bot, comand[1])
-                break
-            case `dj`:
+            await playvideo(bot, comand[1])
+            break
+        case `dj`:
 
             await dj(bot, comand[1])
             break
-            case `antilink`:
-                antiLink(bot,comand[1])
-                break
-            case `antifake`:
-                antiFake(bot,comand[1])
-                break
-            case `boasvindas`:
-                boasVindas(bot,comand[1])    
+        case `antilink`:
+            antiLink(bot, comand[1])
             break
+        case `antifake`:
+            antiFake(bot, comand[1])
+            break
+        case `boasvindas`:
+            boasVindas(bot, comand[1])
+            break
+        case `antivendas`:
+            antiVendas(bot,comand[1])    
+        break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
