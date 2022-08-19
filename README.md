@@ -136,6 +136,8 @@ OK
 </ul>
 
 ### 🔧 instalação(linux):
+
 >bash install.sh
+
 >bash start.sh
 
