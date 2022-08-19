@@ -144,5 +144,7 @@ OK
 ### instalação (windows e outros)
 
 >yarn install
+
 >yarn run build
+
 >yarn start
