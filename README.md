@@ -141,7 +141,7 @@ OK
 
 >bash start.sh
 
-### instalação (windows e outros)
+### 🪟 instalação (windows e outros)
 
 >yarn install
 
