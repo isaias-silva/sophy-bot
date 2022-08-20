@@ -5,7 +5,7 @@ import path from 'path'
 import { downloadContentFromMessage, proto } from "@adiwajshing/baileys";
 import { randomtitle } from "./random";
 //baixar imagem de mensagem
-export async function downloadImage(contentMsg: proto.Message.ImageMessage) {
+export async function downloadImage(contentMsg: proto.Message.IImageMessage) {
     
     const filename = randomtitle()
     const filetype = contentMsg.mimetype?.split('/')[1]
