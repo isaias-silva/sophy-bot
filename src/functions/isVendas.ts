@@ -11,8 +11,6 @@ export default function (message: proto.IMessage) {
         "pack",
         "seguidores",
         "pix",
-        "notas fake",
-        "nota fake",
         "R$",
         "$",
         "SANTANDER",
