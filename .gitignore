@@ -43,6 +43,8 @@ dist/**/*
 yarn.lock
 cache/*
 
+
+
 # formats temp media
 assets/temp/*.png
 assets/temp/*.jpg
