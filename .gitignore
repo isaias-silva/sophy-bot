@@ -48,6 +48,7 @@ cache/*
 # formats temp media
 assets/temp/*.png
 assets/temp/*.jpg
+assets/temp/*.jpeg
 assets/temp/*.webp
 assets/temp/*.gif
 assets/temp/*.mp4

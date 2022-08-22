@@ -4,6 +4,7 @@ import { downloadImage, downloadVideo } from "../functions/downloadContent";
 import { Ibot } from "../interfaces/Ibot";
 import sharp from 'sharp'
 import fs from 'fs'
+import path from 'path'
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg"
 ffmpeg().setFfmpegPath(ffmpegInstaller.path)
@@ -25,7 +26,10 @@ ou envie uma imagem ou gif com o comando *${data.prefix}sticker* 😉`)
         if (file) {
             let converter = await sharp(file).resize(200, 200).webp().toBuffer()
             await sendSticker(converter, true)
-            return await fs.unlinkSync(file)
+            try{ fs.unlinkSync(file) }catch(err){
+                console.log(`erro ao deletar[!]`)
+            }
+            return
         }
     }
     if (gifMessage) {

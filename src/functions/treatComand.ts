@@ -26,13 +26,27 @@ import { antiVendas } from "../comands/antiVendas"
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
 
-    const texto = message?.conversation || message?.imageMessage?.caption || message?.extendedTextMessage?.text || message.videoMessage?.caption || message.templateButtonReplyMessage?.selectedId
+    const texto = message?.conversation ||
+        message?.imageMessage?.caption ||
+        message?.extendedTextMessage?.text ||
+        message.videoMessage?.caption ||
+        message.templateButtonReplyMessage?.selectedId ||
+        message.buttonsResponseMessage?.selectedButtonId
 
-    if (!texto) { return }
-    let prefix = texto.split("")[0]
-    if (prefix == data.prefix) {
-        return true
-    } else return false
+
+
+
+    if (!texto) {
+        return
+    }
+    try {
+        let prefix = texto.split("")[0]
+        if (prefix == data.prefix) {
+            return true
+        } else return false
+    } catch (err) {
+        return false
+    }
 }
 //procurar comando da comandlist
 export function searchComand(Webmessage: proto.IWebMessageInfo) {
@@ -48,6 +62,10 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
 }
 //extrair parametro
 export function parameters(comand: string) {
+ 
+    if (!comand) {
+        return [comand]
+    }
     const array = comand.split(" ").filter((x) => { return x.length > 1 })
     let parametro = array.filter(element => element != array[0])
 
@@ -105,8 +123,8 @@ export async function caseComand(bot: Ibot) {
             boasVindas(bot, comand[1])
             break
         case `antivendas`:
-            antiVendas(bot,comand[1])    
-        break
+            antiVendas(bot, comand[1])
+            break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
@@ -116,7 +134,12 @@ export async function caseComand(bot: Ibot) {
 }
 //extrair comando da mensagem
 export function extractComand(msg: proto.IMessage | any) {
-    const texto = msg.conversation || msg.imageMessage?.caption || msg.extendedTextMessage?.text || msg.videoMessage?.caption || msg.templateButtonReplyMessage?.selectedId
+    const texto = msg.conversation
+        || msg.imageMessage?.caption
+        || msg.extendedTextMessage?.text
+        || msg.videoMessage?.caption
+        || msg.templateButtonReplyMessage?.selectedId
+        || msg.buttonsResponseMessage?.selectedButtonId
     const comand = texto?.replace(data.prefix, "")
     return comand
 }
