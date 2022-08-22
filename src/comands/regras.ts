@@ -1,3 +1,4 @@
+import { toJsonArrays } from "../functions/importJsonData";
 import { Ibot } from "../interfaces/Ibot";
 import { Igroup } from "../interfaces/Igroup"
 export async function regras(bot: Ibot) {
@@ -21,6 +22,7 @@ export async function regras(bot: Ibot) {
     //função:
     try{
     const data: Igroup = await extractGroupData()
+
     return reply(`${data.groupTitle}
     ${data.description}
     `)
