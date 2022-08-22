@@ -5,9 +5,12 @@ import { Ibot } from "../interfaces/Ibot";
 import sharp from 'sharp'
 import fs from 'fs'
 import path from 'path'
+
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg"
+
 ffmpeg().setFfmpegPath(ffmpegInstaller.path)
+
 export async function sticker(bot: Ibot) {
     const { isImage, webMessage, sendSticker, reply, isVideo } = bot
 

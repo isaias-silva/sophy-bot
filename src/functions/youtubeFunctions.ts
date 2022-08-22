@@ -18,10 +18,12 @@ export const downloadYtVideo = async function (link: string) {
    }
    const stream = ytdl(link)
    let buffer = Buffer.from([])
+   console.log('[gravando Buffer !]')
    for await (const chunk of stream) {
 
       buffer = Buffer.concat([buffer, chunk])
    }
+   console.log('[gravado !]')
    fs.writeFileSync(path.resolve("assets", "temp", `${title}.mp4`), buffer)
    return { path: path.resolve("assets", "temp", `${title}.mp4`), videocaption }
 }
@@ -35,12 +37,16 @@ export const downloadYtMusic = async function (link: string) {
    if (duration > limit) {
       return null
    }
-  const stream = ytdl(link,{filter:"audio"})
-   let buffer = Buffer.from([])
-   for await (const chunk of stream) {
-
+  const stream = ytdl(link,{filter:"audioonly"})
+  console.log('[gravando buffer !]')
+  
+  let buffer = Buffer.from([])
+      for await (const chunk of stream) {
+      
       buffer = Buffer.concat([buffer, chunk])
+      
    }
+   console.log('[gravado !]')
    fs.writeFileSync(path.resolve("assets", "temp", `${title}.mp3`), buffer)
    return { path: path.resolve("assets", "temp", `${title}.mp3`), videocaption }
 }
