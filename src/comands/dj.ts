@@ -12,7 +12,7 @@ export async function dj(bot: Ibot, nome: string) {
     await sendImage(path.resolve("assets", "img", "dj.jpg"), "preparando seu mix de musicas", true)
 
     const result = await (await searchVideo(nome)).filter(x => x.duration.seconds < 700)
-    let qtd = result.length>7?7:result.length
+    let qtd = result.length>5?5:result.length
     for (let i = 0; i < qtd; i++) {
         const audio = result[i]
         const { url, thumbnail, title } = audio
@@ -21,10 +21,13 @@ export async function dj(bot: Ibot, nome: string) {
         if (!music) {
             return
         }
-
-        await sendAudio(music?.path, true)
+        try{
+        await sendAudio(music?.path)
         fs.unlinkSync(music.path)
-
+        }catch{
+            console.log(`erro de envio`)
+            return
+        }
     }
     console.log(`complete`)
     const image = await downloadAxios(result[0].thumbnail, "png")
