@@ -5,7 +5,7 @@ export async function regras(bot: Ibot) {
     const { participant } = webMessage.key
 
     if (!participant || !isGroup) {
-        return
+        return reply(`regras de que? não estamos em um grupo!`)
     }
 
     let admin = await isAdmin(participant)

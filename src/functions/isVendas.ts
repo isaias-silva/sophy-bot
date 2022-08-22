@@ -21,7 +21,7 @@ export default function (message: proto.IMessage) {
         "NUBANK",
         "BRADESCO",
         "NEXT",
-        "BANCO DO BRASIL"]
+        "BANCO DO BRASIL","POR MÊS"]
     for (let word of forbiddenwors) {
         if (frase.includes(word.toLowerCase()) || frase.includes(word.toUpperCase()) || frase.includes(word[0].toUpperCase() + word.substring(1))) {
             return true
