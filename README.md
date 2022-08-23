@@ -135,16 +135,14 @@ OK
          <li><b>antifake:</b> proibe numeros fakes/estrangeiros nos grupos</li>
 </ul>
 
-### 🔧 instalação(emuladores de terminal & distros Linux):
+### instalação(emuladores de terminal & distros Linux):
 
 >bash install.sh
-
 >bash start.sh
 
-### 🪟 instalação (windows e outros)
+###  instalação (windows e outros)
 
 >yarn install
-
 >yarn run build
 
 >yarn start
