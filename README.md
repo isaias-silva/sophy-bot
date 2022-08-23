@@ -137,12 +137,12 @@ OK
 
 ### instalação(emuladores de terminal & distros Linux):
 
->bash install.sh
->bash start.sh
+>bash install.sh && bash start.sh
 
 ###  instalação (windows e outros)
 
 >yarn install
+
 >yarn run build
 
 >yarn start
