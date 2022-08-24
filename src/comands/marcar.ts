@@ -6,7 +6,7 @@ export async function marcar(bot: Ibot) {
     const { participant } = webMessage.key
 
     if (!participant || !isGroup) {
-        return
+        return reply(`marcar oque? não estamos em um grupo!`)
     }
 
     let admin = await isAdmin(participant)

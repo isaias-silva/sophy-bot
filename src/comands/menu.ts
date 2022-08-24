@@ -13,7 +13,8 @@ export async function menu(bot: Ibot) {
     const buttons = [
         {buttonId: `${data.prefix}regras`, buttonText: {displayText: '👑regras👑'}, type: 1},
         {buttonId: `${data.prefix}comandos`, buttonText: {displayText: '🔧comandos🔧'}, type: 1},
-        {buttonId: `${data.prefix}antilink on`, buttonText: {displayText: '🚫antilink🚫'}, type: 1},
+        {buttonId: `${data.prefix}marcar`, buttonText: {displayText: '🚨chama membros🚨'}, type: 2},
+        {buttonId: `${data.prefix}antilink on`, buttonText: {displayText: '🚫antilink🚫'}, type: 2},
         {buttonId: `${data.prefix}antifake on`, buttonText: {displayText: '🚫antifake🚫'}, type: 2},
         {buttonId: `${data.prefix}antivendas on`, buttonText: {displayText: '🚫antivendas🚫'}, type: 2},
       ]
