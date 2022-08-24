@@ -5,7 +5,7 @@ import fs from 'fs'
 import path from "path"
 import downloadAxios from "../functions/downloadAxios";
 export async function dj(bot: Ibot, nome: string) {
-    downloadAxios
+    
     const { sendImage, reply, sendAudio } = bot
 
     if (!nome) { return reply("envie o comando junto com o tema/artista da musica") }
@@ -31,6 +31,6 @@ export async function dj(bot: Ibot, nome: string) {
     }
     console.log(`complete`)
     const image = await downloadAxios(result[0].thumbnail, "png")
-    await sendImage(image, `🎧 melhores musicas de '_${nome}_'🎧`, true)
+    await sendImage(image, `🎧 melhores musicas de _${nome}_ 🎧`, true)
     return fs.unlinkSync(image)
 }

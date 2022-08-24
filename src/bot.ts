@@ -35,7 +35,7 @@ export async function bot() {
                     return setTimeout(async () => {
                         await socket.groupParticipantsUpdate(id, participants, "remove")
                         await socket.sendMessage(id, { text: 'aqui é proibido fake! capiche?' })
-                    }, 3000)
+                    }, 2000)
 
                 }
             }
@@ -90,7 +90,7 @@ export async function bot() {
                                 "remove"
                             )
                             return reply(`😊 espero que não sigam o exemplo aí em cima e sigam as regras`);
-                        }, 3000)
+                        }, 2000)
 
 
 
@@ -113,7 +113,7 @@ export async function bot() {
                                 "remove"
                             )
                             return reply(`😊 espero que não sigam o exemplo aí em cima e sigam as regras`);
-                        }, 3000)
+                        }, 2000)
 
 
 
