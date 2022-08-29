@@ -24,7 +24,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
             groupJid: data.id,
             partipants: data.participants,
             locked: data.announce,
-            description: data.desc.toString()
+            description:data.desc? data.desc.toString():'grupo anarquista e sem regras!'
         }
     }
     //função que checa se id é de admin

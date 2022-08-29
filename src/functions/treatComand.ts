@@ -22,6 +22,7 @@ import { antiLink } from "../comands/antiLink"
 import { antiFake } from "../comands/antiFake"
 import { boasVindas } from "../comands/boasVindas"
 import { antiVendas } from "../comands/antiVendas"
+import { add } from "../comands/add"
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -92,6 +93,9 @@ export async function caseComand(bot: Ibot) {
         case `ban`:
             await ban(bot, comand[1])
             break
+       case `add`:
+                await add(bot, comand[1])
+           break
         case `regras`:
             await regras(bot)
             break

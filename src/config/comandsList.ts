@@ -5,6 +5,7 @@ export default [
     {comand:'toimg'},
     {comand:'ban',admin:true},
     {comand:'regras',admin:true},
+    {comand:'add',admin:true},
     {comand:'marcar',admin:true},
     {comand:'antilink',admin:true},
     {comand:'antifake',admin:true},
