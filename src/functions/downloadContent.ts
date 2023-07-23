@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 //funções
-import { downloadContentFromMessage, proto } from "@adiwajshing/baileys";
+import { downloadContentFromMessage, proto } from "@whiskeysockets/baileys";
 import { randomtitle } from "./random";
 //baixar imagem de mensagem
 export async function downloadImage(contentMsg: proto.Message.IImageMessage) {

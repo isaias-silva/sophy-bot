@@ -1,4 +1,4 @@
-import { proto } from "@adiwajshing/baileys"
+import { proto } from "@whiskeysockets/baileys"
 
 export default function (message: proto.IMessage) {
     let frase = message.conversation || message.imageMessage?.caption || message.videoMessage?.caption || message.extendedTextMessage?.text

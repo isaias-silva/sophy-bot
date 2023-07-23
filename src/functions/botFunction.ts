@@ -1,5 +1,5 @@
 //modules
-import { proto } from "@adiwajshing/baileys";
+import { proto } from "@whiskeysockets/baileys";
 import fs from 'fs'
 //interfaces
 import { Ibot } from "../interfaces/Ibot";
@@ -133,10 +133,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         return socket.sendMessage(remoteJid, params, options)
     }
     //enviar Menu
-    const sendmenu = async (templateMessage: Imenu) => {
-
-        return socket.sendMessage(remoteJid, templateMessage)
-    }
+   
     //retornando todas as funções
     return {
         sendText,
@@ -144,7 +141,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
         mark,
         sendImage,
         sendAudio,
-        sendmenu,
+       
         sendSticker,
         sendVideo,
         remoteJid,

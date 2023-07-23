@@ -58,8 +58,9 @@ export async function bot() {
         }
     })
     //socket monitorando evento de messagem recebida
-    socket.ev.on('messages.upsert', async (msg) => {
-
+   
+    socket.ev.on("messages.upsert", async (msg) => {
+        
         //extraindo mensagem
         const [wMessage] = msg.messages
         const message = wMessage.message

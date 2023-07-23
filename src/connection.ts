@@ -1,7 +1,8 @@
 import makeWaSocket,{
   DisconnectReason,
-  useSingleFileAuthState,
-} from "@adiwajshing/baileys";
+  makeWASocket,
+  useMultiFileAuthState,
+} from "@whiskeysockets/baileys";
 
 
 import { Boom } from "@hapi/boom";
@@ -9,32 +10,39 @@ import path from "path";
 
 export const connect =async () => {
   
-  const { state, saveState } = useSingleFileAuthState(
-    path.resolve(__dirname, "..", "cache", "auth.json")
+  const { state, saveCreds } = await useMultiFileAuthState(
+    path.resolve( "cache", `auth`)
   );
+  //antiloop
 
-  const socket = makeWaSocket({
-    printQRInTerminal: true,
+  //construção do socket de eventos do whatsapp
+  const socket = makeWASocket({
+    qrTimeout: 20000,
     auth: state,
     defaultQueryTimeoutMs: undefined,
-    
-    
+    printQRInTerminal: true
   });
- 
-  socket.ev.on("connection.update", async (update) => {
+  socket.ev.on("connection.update", async (action: any) => {
+    const update = action;
     const { connection, lastDisconnect } = update;
-    if (connection === "close") {
-      const shouldReconnect =
-        (lastDisconnect?.error as Boom)?.output?.statusCode !==
-        DisconnectReason.loggedOut;
 
+    //se a conexão estiver fechada
+    if (connection === "close") {
+      //altera status do bot
+  
+      const statusCode = (lastDisconnect?.error as Boom)?.output?.statusCode;
+      const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
       if (shouldReconnect) {
         await connect();
       }
+      
     }
+  
   });
 
-  socket.ev.on("creds.update", saveState);
 
+  socket.ev.on("creds.update", async () => {
+    await saveCreds();
+  });
   return socket;
 };

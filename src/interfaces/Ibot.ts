@@ -1,5 +1,5 @@
 //proto
-import { proto } from "@adiwajshing/baileys";
+import { proto } from "@whiskeysockets/baileys";
 //interfaces
 import { Igroup } from "./Igroup";
 import { Imenu } from "./Imenu";
@@ -12,7 +12,7 @@ export interface Ibot {
     reply: (txt: string) => Promise<proto.WebMessageInfo>,
     mark: (txt: string, id: string[], isReply?: boolean) => Promise<proto.WebMessageInfo>,
     //buttons
-    sendmenu: (object: Imenu) => Promise<proto.WebMessageInfo>
+  
     //enviar midias
     sendImage: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,
     sendVideo: (pathOrBuffer: string | Buffer, caption?: string, isReply?: boolean) => Promise<proto.WebMessageInfo>,

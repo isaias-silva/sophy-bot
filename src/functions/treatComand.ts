@@ -2,7 +2,7 @@
 import { data } from "../config/data"
 import comandsList from "../config/comandsList"
 //proto
-import { proto } from "@adiwajshing/baileys"
+import { proto } from "@whiskeysockets/baileys"
 //interface
 import { Ibot } from "../interfaces/Ibot"
 //funções de comandos

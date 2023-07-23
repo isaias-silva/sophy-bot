@@ -22,7 +22,7 @@
 
 ## bibliotecas
 <div>
-<a href="https://www.npmjs.com/package/@adiwajshing/baileys">
+<a href="https://www.npmjs.com/package/@whiskeysockets/baileys">
 <img src="https://img.shields.io/static/v1?label=npm&message=baileys&color=blue">
 </a>
 <a href="https://www.npmjs.com/package/axios">
@@ -46,7 +46,7 @@
 
 ## sobre o bot
 
-<b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="https://www.npmjs.com/package/@adiwajshing/baileys">Baileys</a> feito em <b>Typescript</b>,
+<b>chatbot</b> do whatsapp criado com uso da biblioteca <a href="https://www.npmjs.com/package/@whiskeysockets/baileys">Baileys</a> feito em <b>Typescript</b>,
 o objetivo do bot é auxiliar em administração de grupos de whatsapp.
 </p>
 
