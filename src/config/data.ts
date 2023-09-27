@@ -1,5 +1,5 @@
 export const data = {
-    botname: "sophia",
+    botname: "Morgan Bates",
     adminbot: "",
     prefix: "!",
     owner:5521984191603,
