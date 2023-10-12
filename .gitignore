@@ -42,7 +42,7 @@ dist/**/*
 # ignore yarn.lock
 yarn.lock
 cache/*
-
+cache-docker/*
 
 
 # formats temp media
