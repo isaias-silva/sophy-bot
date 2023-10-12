@@ -23,7 +23,7 @@ export async function bot() {
         if (action != 'add' && action != 'remove') {
             return
         }
-        if (action === 'add') {
+      
             const [participant] = participants
             let numberParticipant = participant.split("@")[0]
             console.log(numberParticipant)
@@ -45,17 +45,22 @@ export async function bot() {
             if (!isGroupBemvindo) {
                 return
             }
+try{
+    const imageUrl = await socket.profilePictureUrl(participant, "image")
+    if (imageUrl) {
+        const image = await downloadAxios(imageUrl, "png")
 
-            const imageUrl = await socket.profilePictureUrl(participant, "image")
-            if (imageUrl) {
-                const image = await downloadAxios(imageUrl, "png")
+        await socket.sendMessage(id, { image: { url: image }, caption: action=='add'?`seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`:`o ${numberParticipant} saiu para lustrar os chifres. `, mentions: participants })
+        return fs.unlinkSync(image)
+    }
 
-                await socket.sendMessage(id, { image: { url: image }, caption: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
-                return fs.unlinkSync(image)
-            }
+}catch{
 
-            return socket.sendMessage(id, { text: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
-        }
+}        return socket.sendMessage(id, { text: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
+    
+
+        
+
     })
  
    
@@ -64,8 +69,7 @@ export async function bot() {
         //extraindo mensagem
         const [wMessage] = msg.messages
         const message = wMessage.message
-        //barreiras
-        //se message nao existe
+       
         if (!message) {
             return
         }
@@ -73,11 +77,23 @@ export async function bot() {
         const { reply, isAdmin, participant, remoteJid } = botF
         if (participant) {
 
-            //
+            
             const caminhoLinks = path.resolve("cache", "antilink.json")
             const caminhoVendas = path.resolve("cache", "antivendas.json")
             const isAntilink = toJsonArrays(caminhoLinks).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
             const isAntivendas = toJsonArrays(caminhoVendas).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
+            const text =
+            message?.conversation ||
+            message?.imageMessage?.caption ||
+            message?.videoMessage?.caption ||
+            message?.documentMessage?.caption ||
+            message?.extendedTextMessage?.text;
+
+            if(text?.includes('pv')){
+
+            }
+            
+            
             if (isAntivendas) {
                 if (isVendas(message)) {
                     const isAdm = await isAdmin(participant)
