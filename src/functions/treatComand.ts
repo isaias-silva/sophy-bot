@@ -23,6 +23,7 @@ import { antiFake } from "../comands/antiFake"
 import { boasVindas } from "../comands/boasVindas"
 import { antiVendas } from "../comands/antiVendas"
 import { add } from "../comands/add"
+import { interativo } from "../comands/interativo"
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -129,6 +130,8 @@ export async function caseComand(bot: Ibot) {
         case `antivendas`:
             antiVendas(bot, comand[1])
             break
+        case `interativo`:
+            interativo(bot,comand[1])
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break
