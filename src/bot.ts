@@ -12,6 +12,7 @@ import { isLink } from "./functions/isLink";
 import isVendas from './functions/isVendas';
 //funções de tratamento de comandos
 import { caseComand, isComand, searchComand } from "./functions/treatComand";
+import { interation } from './functions/interation';
 
 //exportando a inicialização do bot
 export async function bot() {
@@ -27,16 +28,19 @@ export async function bot() {
         const [participant] = participants
         let numberParticipant = participant.split("@")[0]
         console.log(numberParticipant)
-        const caminhoAntf = path.resolve("cache", "antifake.json")
-        const isAntiFake = toJsonArrays(caminhoAntf).find(element => element.id == id && element.ative === true)
-        if (isAntiFake) {
-            let areacode = extractAreaCode(numberParticipant)
-            if (areacode != '55') {
-                return setTimeout(async () => {
-                    await socket.groupParticipantsUpdate(id, participants, "remove")
-                    await socket.sendMessage(id, { text: 'aqui é proibido fake! capiche?' })
-                }, 2000)
 
+        if (action == 'add') {
+            const caminhoAntf = path.resolve("cache", "antifake.json")
+            const isAntiFake = toJsonArrays(caminhoAntf).find(element => element.id == id && element.ative === true)
+            if (isAntiFake) {
+                let areacode = extractAreaCode(numberParticipant)
+                if (areacode != '55') {
+                    return setTimeout(async () => {
+                        await socket.groupParticipantsUpdate(id, participants, "remove")
+                        await socket.sendMessage(id, { text: 'aqui é proibido fake! capiche?' })
+                    }, 2000)
+
+                }
             }
         }
         const caminhoBoas = path.resolve("cache", "boasvindas.json")
@@ -59,7 +63,7 @@ export async function bot() {
 
         } catch {
             return socket.sendMessage(id, { text: caption, mentions: participants })
-        } 
+        }
 
 
     })
@@ -81,8 +85,11 @@ export async function bot() {
 
             const caminhoLinks = path.resolve("cache", "antilink.json")
             const caminhoVendas = path.resolve("cache", "antivendas.json")
+            const caminhoInterativo = path.resolve("cache", "interativo.json")
             const isAntilink = toJsonArrays(caminhoLinks).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
             const isAntivendas = toJsonArrays(caminhoVendas).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
+            const isInterativo = toJsonArrays(caminhoInterativo).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
+
             const text =
                 message?.conversation ||
                 message?.imageMessage?.caption ||
@@ -90,8 +97,8 @@ export async function bot() {
                 message?.documentMessage?.caption ||
                 message?.extendedTextMessage?.text;
 
-            if (text?.includes('pv')) {
-
+            if (isInterativo && text) {
+                interation(text, botF)
             }
 
 

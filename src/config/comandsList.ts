@@ -9,6 +9,7 @@ export default [
     {comand:'marcar',admin:true},
     {comand:'antilink',admin:true},
     {comand:'antifake',admin:true},
+    {comand:'interativo',admin:true},
     {comand:'boasvindas',admin:true},
     {comand:'antivendas',admin:true},
     {comand:'ytdownload'},
