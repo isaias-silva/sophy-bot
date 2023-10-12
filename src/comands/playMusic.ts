@@ -17,10 +17,13 @@ export async function playmusic(bot: Ibot, nome: string) {
     if (!music) {
         return reply("audio muito longo, porfavor apenas musicas, passou de 10 minutos pra min é podcast! 😉")
     }
-    const image = await downloadAxios(thumbnail, "png")
-    await sendImage(image, title, true)
-    fs.unlinkSync(image)
-    await sendAudio(music?.path, true)
-    fs.unlinkSync(music.path)
-    return
+    const image = await downloadAxios( "png",thumbnail)
+    if(image){
+        await sendImage(image, title, true)
+        fs.unlinkSync(image)
+        await sendAudio(music?.path, true)
+        fs.unlinkSync(music.path)
+        return
+    }
+    
 }

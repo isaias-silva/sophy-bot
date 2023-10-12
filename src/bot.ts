@@ -23,53 +23,55 @@ export async function bot() {
         if (action != 'add' && action != 'remove') {
             return
         }
-      
-            const [participant] = participants
-            let numberParticipant = participant.split("@")[0]
-            console.log(numberParticipant)
-            const caminhoAntf = path.resolve("cache", "antifake.json")
-            const isAntiFake = toJsonArrays(caminhoAntf).find(element => element.id == id && element.ative === true)
-            if (isAntiFake) {
-                let areacode = extractAreaCode(numberParticipant)
-                if (areacode != '55') {
-                    return setTimeout(async () => {
-                        await socket.groupParticipantsUpdate(id, participants, "remove")
-                        await socket.sendMessage(id, { text: 'aqui é proibido fake! capiche?' })
-                    }, 2000)
+
+        const [participant] = participants
+        let numberParticipant = participant.split("@")[0]
+        console.log(numberParticipant)
+        const caminhoAntf = path.resolve("cache", "antifake.json")
+        const isAntiFake = toJsonArrays(caminhoAntf).find(element => element.id == id && element.ative === true)
+        if (isAntiFake) {
+            let areacode = extractAreaCode(numberParticipant)
+            if (areacode != '55') {
+                return setTimeout(async () => {
+                    await socket.groupParticipantsUpdate(id, participants, "remove")
+                    await socket.sendMessage(id, { text: 'aqui é proibido fake! capiche?' })
+                }, 2000)
+
+            }
+        }
+        const caminhoBoas = path.resolve("cache", "boasvindas.json")
+
+        const isGroupBemvindo = toJsonArrays(caminhoBoas).find(element => element.id == id && element.ative === true)
+        if (!isGroupBemvindo) {
+            return
+        }
+        try {
+            const imageUrl = await socket.profilePictureUrl(participant, "image")
+            if (imageUrl) {
+                const image = await downloadAxios("png", imageUrl)
+                if (image) {
+                    await socket.sendMessage(id, { image: { url: image }, caption: action == 'add' ? `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!` : `o ${numberParticipant} saiu para lustrar os chifres. `, mentions: participants })
+                    return fs.unlinkSync(image)
 
                 }
             }
-            const caminhoBoas = path.resolve("cache", "boasvindas.json")
 
-            const isGroupBemvindo = toJsonArrays(caminhoBoas).find(element => element.id == id && element.ative === true)
-            if (!isGroupBemvindo) {
-                return
-            }
-try{
-    const imageUrl = await socket.profilePictureUrl(participant, "image")
-    if (imageUrl) {
-        const image = await downloadAxios(imageUrl, "png")
+        } catch {
 
-        await socket.sendMessage(id, { image: { url: image }, caption: action=='add'?`seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`:`o ${numberParticipant} saiu para lustrar os chifres. `, mentions: participants })
-        return fs.unlinkSync(image)
-    }
+        } return socket.sendMessage(id, { text: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
 
-}catch{
 
-}        return socket.sendMessage(id, { text: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
-    
 
-        
 
     })
- 
-   
+
+
     socket.ev.on("messages.upsert", async (msg) => {
-        
+
         //extraindo mensagem
         const [wMessage] = msg.messages
         const message = wMessage.message
-       
+
         if (!message) {
             return
         }
@@ -77,23 +79,23 @@ try{
         const { reply, isAdmin, participant, remoteJid } = botF
         if (participant) {
 
-            
+
             const caminhoLinks = path.resolve("cache", "antilink.json")
             const caminhoVendas = path.resolve("cache", "antivendas.json")
             const isAntilink = toJsonArrays(caminhoLinks).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
             const isAntivendas = toJsonArrays(caminhoVendas).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
             const text =
-            message?.conversation ||
-            message?.imageMessage?.caption ||
-            message?.videoMessage?.caption ||
-            message?.documentMessage?.caption ||
-            message?.extendedTextMessage?.text;
+                message?.conversation ||
+                message?.imageMessage?.caption ||
+                message?.videoMessage?.caption ||
+                message?.documentMessage?.caption ||
+                message?.extendedTextMessage?.text;
 
-            if(text?.includes('pv')){
+            if (text?.includes('pv')) {
 
             }
-            
-            
+
+
             if (isAntivendas) {
                 if (isVendas(message)) {
                     const isAdm = await isAdmin(participant)

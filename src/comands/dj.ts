@@ -31,14 +31,10 @@ export async function dj(bot: Ibot, nome: string) {
         }
     }
     console.log(`complete`)
-    if(result[0]){
-        const image = await downloadAxios(result[0].thumbnail, "png")
-        await sendImage(image, `🎧 melhores musicas de _${nome}_ 🎧`, true)
-        return fs.unlinkSync(image)
-    }else{
-        await reply(`🎧 melhores musicas de _${nome}_ 🎧`)
-
-    }
+    const image = await downloadAxios( "png",result[0].thumbnail)
+  if(image){
+    await sendImage(image, `🎧 melhores musicas de _${nome}_ 🎧`, true)
+    return fs.unlinkSync(image)
+  }
     
-  
 }
