@@ -45,22 +45,21 @@ export async function bot() {
         if (!isGroupBemvindo) {
             return
         }
+        const caption = action == 'add' ? `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!` : `o ${numberParticipant} saiu para lustrar os chifres. `
         try {
             const imageUrl = await socket.profilePictureUrl(participant, "image")
             if (imageUrl) {
                 const image = await downloadAxios("png", imageUrl)
                 if (image) {
-                    await socket.sendMessage(id, { image: { url: image }, caption: action == 'add' ? `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!` : `o ${numberParticipant} saiu para lustrar os chifres. `, mentions: participants })
+                    await socket.sendMessage(id, { image: { url: image }, caption, mentions: participants })
                     return fs.unlinkSync(image)
 
                 }
             }
 
         } catch {
-
-        } return socket.sendMessage(id, { text: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
-
-
+            return socket.sendMessage(id, { text: caption, mentions: participants })
+        } 
 
 
     })
