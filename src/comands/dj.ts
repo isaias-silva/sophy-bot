@@ -32,6 +32,7 @@ export async function dj(bot: Ibot, nome: string) {
     }
     console.log(`complete`)
     const image = await downloadAxios(result[0].thumbnail, "png")
+  
     await sendImage(image, `🎧 melhores musicas de _${nome}_ 🎧`, true)
     return fs.unlinkSync(image)
 }

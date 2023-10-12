@@ -1,5 +1,5 @@
 # Use uma imagem Node.js como base
-FROM node:16
+FROM node:14
 
 WORKDIR /app
 
