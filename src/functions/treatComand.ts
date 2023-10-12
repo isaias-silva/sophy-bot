@@ -132,6 +132,7 @@ export async function caseComand(bot: Ibot) {
             break
         case `interativo`:
             interativo(bot,comand[1])
+            break
         default:
             await bot.reply('erro no comando ou comando nao existe')
             break

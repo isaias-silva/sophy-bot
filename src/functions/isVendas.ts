@@ -7,8 +7,7 @@ export default function (message: proto.IMessage) {
     }
 
     const forbiddenwors = [
-        "vendo",
-        "pack",
+       
         "seguidores",
         "SANTANDER",
         "ITAU",

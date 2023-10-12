@@ -48,18 +48,18 @@ export async function antiVendas(bot: Ibot, param: string) {
        }else{
        
         list.push(obj)}
-        fs.writeFileSync(path.resolve(`cache`,`interativo.json`),JSON.stringify(list))
-        return reply(`modo interativo ativado!`)
+        fs.writeFileSync(path.resolve(`cache`,`antivendas.json`),JSON.stringify(list))
+        return reply(`antivendas ativado!`)
     case `off`:
        
            const groupExists= list.find(element=>element.id==remoteJid && element.ative==false)
            if(groupExists){
-            return reply(`interativo foi desativado aqui, para reativar digite *${data.prefix}interativo on*`)
+            return reply(`antivendas foi desativado aqui, para reativar digite *${data.prefix}antivendas on*`)
            }
            list.map((item)=>{if(item.id===remoteJid){item.ative=false}})
-           fs.writeFileSync(path.resolve(`cache`,`interativo.json`),JSON.stringify(list))
-           return reply(`interativo desativado`)
-  
+           fs.writeFileSync(path.resolve(`cache`,`antivendas.json`),JSON.stringify(list))
+           return reply(`antilink desativado`)
+    break
     default:
         return reply(" use on/off para ativar")
   
