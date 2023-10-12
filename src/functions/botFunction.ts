@@ -89,7 +89,7 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
             caption: caption
         }
         let options = isReply == true ? { quoted: webMessage } : {}
-        return socket.sendMessage(remoteJid, params, options)
+       return await socket.sendMessage(remoteJid, params, options)
     }
     //enviar sticker
     const sendSticker = async (pathOrBuffer: string | Buffer, isReply?: boolean) => {

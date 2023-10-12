@@ -57,7 +57,7 @@ export async function bot() {
             return socket.sendMessage(id, { text: `seja bem vindo(a) @${numberParticipant}, siga as regras e divirta-se!`, mentions: participants })
         }
     })
-    //socket monitorando evento de messagem recebida
+ 
    
     socket.ev.on("messages.upsert", async (msg) => {
         

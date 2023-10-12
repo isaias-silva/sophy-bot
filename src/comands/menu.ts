@@ -2,6 +2,7 @@ import { Ibot } from "../interfaces/Ibot";
 import path from "path"
 import { data } from "../config/data";
 import comandsList from "../config/comandsList";
+import { readFileSync } from "fs";
 
 export async function menu(bot: Ibot) {
 
@@ -10,16 +11,11 @@ export async function menu(bot: Ibot) {
 
 
 
- 
 
-  const menu = {
-    image: { url: path.resolve('assets', 'img', 'perfil.webp') },
-    caption: `_⚙️sophiaBot v${data.version}_\n*numero de comandos*:  ${comandsList.length}\n*botname*:  ${data.botname}\n*dono*:  +${data.owner}`,
-    footer: 'desenvolvido por Zack black',
-    headerType: 1
-  }
+  const template = `_⚙️sophiaBot v${data.version}_\n*numero de comandos*:  ${comandsList.length}\n*botname*:  ${data.botname}\n*dono*:  +${data.owner}`
+  const buff = readFileSync(path.resolve('assets', 'img', 'perfil.webp'))
 
-  sendImage(menu.image.url, menu.caption, true)
+  return sendImage(buff, template, true)
 
 
 }

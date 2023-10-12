@@ -19,7 +19,7 @@
         "@adiwajshing/keyed-db": "adiwajshing/keyed-db",
         "@hapi/boom": "^10.0.1",
 
-        "@whiskeysockets/baileys": "^6.3.0",
+        "@whiskeysockets/baileys": "^6.5.0",
         "@ffmpeg-installer/ffmpeg": "^1.1.0",
         "@types/ffmpeg": "^1.0.4",
         "@types/fluent-ffmpeg": "^2.1.20",

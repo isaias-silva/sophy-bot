@@ -2,6 +2,7 @@ import { Ibot } from "../interfaces/Ibot";
 import path from "path"
 import { data } from "../config/data";
 import comandsList from "../config/comandsList";
+import { readFileSync } from "fs";
 export async function comandos(bot:Ibot){
 
     const {sendImage} = bot
@@ -16,5 +17,6 @@ export async function comandos(bot:Ibot){
     comandsList.filter(x=>!x.admin).forEach((value)=>{
         return template+=`\n |✪ *${data.prefix}* ${value.comand}`
     })
-    return sendImage(path.resolve(`assets`,`img`,`perfil.webp`),template,true)
+   const buff= readFileSync(path.resolve(`assets`,`img`,`profile.jpg`))
+    return sendImage(buff,template,true)
 }
