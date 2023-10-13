@@ -55,7 +55,7 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
     const { message } = Webmessage
 
     const comand = parameters(extractComand(message))
-    let exists = comandsList.find(str => str.comand == comand[0])
+    let exists = comandsList.find(str => str.comand == comand[0] || (str.variants && str.variants.filter(v => v == comand[0]).length > 0))
     if (exists) {
         return true
     } else {
