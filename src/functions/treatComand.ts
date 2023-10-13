@@ -64,7 +64,7 @@ export function searchComand(Webmessage: proto.IWebMessageInfo) {
 }
 //extrair parametro
 export function parameters(comand: string) {
- 
+
     if (!comand) {
         return [comand]
     }
@@ -82,21 +82,24 @@ export async function caseComand(bot: Ibot) {
         case `menu`:
             await menu(bot)
             break
-        case `sticker` || 's':
+        case `s`:
+        case `sticker`:
             await sticker(bot)
             break
-        case `comandos` || 'c':
+        case 'i':
+        case `comandos`:
             await comandos(bot)
             break
-        case `toimg` || 'i':
+        case `i`:
+        case `toimg`:
             await toimg(bot)
             break
         case `ban`:
             await ban(bot, comand[1])
             break
-       case `add`:
-                await add(bot, comand[1])
-           break
+        case `add`:
+            await add(bot, comand[1])
+            break
         case `regras`:
             await regras(bot)
             break
@@ -131,7 +134,7 @@ export async function caseComand(bot: Ibot) {
             antiVendas(bot, comand[1])
             break
         case `interativo`:
-            interativo(bot,comand[1])
+            interativo(bot, comand[1])
             break
         default:
             await bot.reply('erro no comando ou comando nao existe')
