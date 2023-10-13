@@ -82,13 +82,13 @@ export async function caseComand(bot: Ibot) {
         case `menu`:
             await menu(bot)
             break
-        case `sticker`:
+        case `sticker` || 's':
             await sticker(bot)
             break
-        case `comandos`:
+        case `comandos` || 'c':
             await comandos(bot)
             break
-        case `toimg`:
+        case `toimg` || 'i':
             await toimg(bot)
             break
         case `ban`:
