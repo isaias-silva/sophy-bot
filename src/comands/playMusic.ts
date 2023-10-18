@@ -4,13 +4,13 @@ import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
 
 import downloadAxios from "../functions/downloadAxios";
-export async function playmusic(bot: Ibot, nome: string) {
+export async function playmusic(bot: Ibot, param?: string) {
 
     const { sendImage, reply, sendAudio } = bot
 
-    if (!nome) { return reply("envie o comando junto com o nome/trecho da musica") }
+    if (!param) { return reply("envie o comando junto com o nome/trecho da musica") }
     await reply("carregando musica...")
-    const result = await searchVideo(nome)
+    const result = await searchVideo(param)
     const { url, thumbnail, title } = result[0]
 
     const music = await downloadYtMusic(url)

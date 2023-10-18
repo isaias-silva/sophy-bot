@@ -2,12 +2,13 @@ import { data } from "../config/data";
 import { downloadYtVideo } from "../functions/youtubeFunctions";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
-export async function ytdownload(bot: Ibot, link: string) {
+export async function ytdownload(bot: Ibot, param?: string) {
    const { reply, sendVideo } = bot
-   if (!link) {
+   
+   if (!param) {
       return reply(`envie o comando com o link\n ex: *${data.prefix}ytdownload http://youtube/exemplo*`)
    }
-   const file = await downloadYtVideo(link)
+   const file = await downloadYtVideo(param)
    if (!file) {
       return reply('erro ao baixar o video, envie um link válido e que nao ultrapasse *10 minutos*!')
    }

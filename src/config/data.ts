@@ -3,5 +3,5 @@ export const data = {
     adminbot: "",
     prefix: "!",
     owner:5521984191603,
-    version:'1.0'
+    version:'1.1'
 }

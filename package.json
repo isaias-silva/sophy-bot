@@ -4,7 +4,7 @@
     "description": "chatbot ts",
     "main": "index.js",
     "scripts": {
-        "dev": "ts-node-dev ./src/index.ts",
+        "dev": "ts-node-dev ./src/index.ts test",
         "build": "tsc",
         "start": "node ./build/index.js"
     },

@@ -2,13 +2,13 @@
 import { downloadYtMusic, downloadYtVideo, searchVideo } from "../functions/youtubeFunctions";
 import { Ibot } from "../interfaces/Ibot";
 import fs from 'fs'
-export async function playvideo(bot: Ibot, nome: string) {
+export async function playvideo(bot: Ibot, param?: string) {
 
     const { reply, sendVideo } = bot
 
-    if (!nome) { return reply("envie o comando junto com o nome/tema do video") }
+    if (!param) { return reply("envie o comando junto com o nome/tema do video") }
     await reply("carregando video...isso pode demorar um pouco...")
-    const result = await searchVideo(nome)
+    const result = await searchVideo(param)
     const { url, title } = result[0]
 
     const video = await downloadYtVideo(url)

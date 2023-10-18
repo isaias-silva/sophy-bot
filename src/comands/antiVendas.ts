@@ -5,10 +5,12 @@ import { IatributeGroup } from "../interfaces/IatributeGroup";
 import { data } from "../config/data";
 import { toJsonArrays } from "../functions/importJsonData";
 
-export async function antiVendas(bot: Ibot, param: string) {
+export async function antiVendas(bot: Ibot, param?: string) {
     const { isGroup, reply, webMessage, isAdmin, imAdmin,remoteJid } = bot
     const { participant } = webMessage.key
-
+    if(!param){
+        return reply('use parametros, ex: !comando parametro')
+    }
     if (!participant || !isGroup) {
         return reply('comando apenas para grupos')
     }

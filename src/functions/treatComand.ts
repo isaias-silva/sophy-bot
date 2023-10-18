@@ -7,23 +7,6 @@ import { proto } from "@whiskeysockets/baileys"
 import { Ibot } from "../interfaces/Ibot"
 //funções de comandos
 
-import { menu } from "../comands/menu"
-import { sticker } from "../comands/sticker"
-import { comandos } from "../comands/comandos"
-import { toimg } from "../comands/toimg"
-import { ban } from "../comands/ban"
-import { regras } from "../comands/regras"
-import { marcar } from "../comands/marcar"
-import { ytdownload } from "../comands/ytdownload"
-import { playmusic } from "../comands/playMusic"
-import { playvideo } from "../comands/playVideo"
-import { dj } from "../comands/dj"
-import { antiLink } from "../comands/antiLink"
-import { antiFake } from "../comands/antiFake"
-import { boasVindas } from "../comands/boasVindas"
-import { antiVendas } from "../comands/antiVendas"
-import { add } from "../comands/add"
-import { interativo } from "../comands/interativo"
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -71,76 +54,28 @@ export function parameters(comand: string) {
     const array = comand.split(" ").filter((x) => { return x.length > 1 })
     let parametro = array.filter(element => element != array[0])
 
-    return [array[0], parametro.toString().replace(/,/g, " ")]
+    return [array[0], parametro.toString().replace(/,/g, " ")].map((value) => {if(value) return value.toLowerCase()})
 }
 //cases de comandos
 export async function caseComand(bot: Ibot) {
-    const comand = parameters(extractComand(bot.webMessage.message))
+    const comandInput = parameters(extractComand(bot.webMessage.message))
 
-    console.log(comand)
-    switch (comand[0]) {
-        case `menu`:
-            await menu(bot)
-            break
-        case `s`:
-        case `sticker`:
-            await sticker(bot)
-            break
-        case 'i':
-        case `comandos`:
-            await comandos(bot)
-            break
-        case `i`:
-        case `toimg`:
-            await toimg(bot)
-            break
-        case `ban`:
-            await ban(bot, comand[1])
-            break
-        case `add`:
-            await add(bot, comand[1])
-            break
-        case `regras`:
-            await regras(bot)
-            break
-        case `marcar`:
-            await marcar(bot)
-            break
-        case `ytdownload`:
-            await ytdownload(bot, comand[1])
-            break
-        case `playmusic`:
-
-            await playmusic(bot, comand[1])
-            break
-        case `playvideo`:
-
-            await playvideo(bot, comand[1])
-            break
-        case `dj`:
-
-            await dj(bot, comand[1])
-            break
-        case `antilink`:
-            antiLink(bot, comand[1])
-            break
-        case `antifake`:
-            antiFake(bot, comand[1])
-            break
-        case `boasvindas`:
-            boasVindas(bot, comand[1])
-            break
-        case `antivendas`:
-            antiVendas(bot, comand[1])
-            break
-        case `interativo`:
-            interativo(bot, comand[1])
-            break
-        default:
-            await bot.reply('erro no comando ou comando nao existe')
-            break
-
-
+  
+    let comandUsed = false
+    comandsList.forEach(value => {
+        if (comandUsed == true) {
+            return
+        }
+        const { comand, fn, variants } = value
+        if (comandInput[0] == comand || variants.find(variant=>variant==comandInput[0])) {
+       console.log(comand+ " passou")
+            fn(bot, comandInput[1])
+            comandUsed = true
+            return
+        }
+    })
+    if(comandUsed==false){
+        bot.reply('Comando não encontrado ou corrompido, consulte o zack.')
     }
 }
 //extrair comando da mensagem
