@@ -12,9 +12,9 @@ const comandList:{comand:string,variants:string[],admin?:boolean}[]= [
     {comand:'interativo',admin:true,variants:['it']},
     {comand:'boasvindas',admin:true,variants:['bv']},
     {comand:'antivendas',admin:true,variants:['av']},
-    {comand:'ytdownload',variants:['']},
-    {comand:'playmusic',variants:[]},
-    {comand:'playvideo',variants:[]},
+    {comand:'ytdownload',variants:['ytd']},
+    {comand:'playmusic',variants:['pm']},
+    {comand:'playvideo',variants:['video']},
     {comand:'dj',variants:['solta_o_som','batidão']}]
 
     export default comandList
