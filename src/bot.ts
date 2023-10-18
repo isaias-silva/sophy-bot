@@ -160,6 +160,7 @@ export async function bot() {
             return reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
         }
         //sem barreiras, comandos seguem apartir daqui
+        
         await caseComand(botF)
     })
 }
