@@ -42,7 +42,7 @@ export interface Ibot {
     //é button
     isButtonRes: boolean
     //group props
-    extractGroupData: () => Promise<Igroup> | {}
+    extractGroupData: () => Promise<Igroup|null> 
     isAdmin: (id: string) => Promise<boolean>
     isSuperAdmin: (id: string) => Promise<boolean>
     imAdmin: () => Promise<boolean>

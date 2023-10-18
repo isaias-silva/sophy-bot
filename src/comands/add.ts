@@ -23,7 +23,8 @@ export async function add(bot: Ibot, number?: string) {
     if (!number || number.match(/[a-zA-Z\u00C0-\u00FF ]+/i)) {
         return reply("escreva o comando com o numero! \n ex *5599999999*")
     }
-   const data:Igroup=await extractGroupData()
+   const data:Igroup|null=await extractGroupData()
+  
    if(!data){
     return reply("erro ao extrair dados do grupo")
    }

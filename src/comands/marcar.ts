@@ -20,7 +20,10 @@ export async function marcar(bot: Ibot) {
         return reply('apenas adms podem usar esse comando!')
     }
     //função:
-    const groupdata: Igroup = await extractGroupData()
+    const groupdata: Igroup | null = await extractGroupData()
+    if (!groupdata) {
+        return
+    }
     let tempalte = `🚨CHAMANDO TODOS OS MEMBROS! BORA PARTICIPAR!🚨\n\n`
     groupdata.partipants?.forEach((x) => {
         tempalte += `@${x.id.split('@')[0]}\n`

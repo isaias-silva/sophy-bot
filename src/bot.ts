@@ -13,6 +13,7 @@ import isVendas from './functions/isVendas';
 //funções de tratamento de comandos
 import { caseComand, isComand, searchComand } from "./functions/treatComand";
 import { interation } from './functions/interation';
+import saveGroup from './functions/saveGroup';
 
 //exportando a inicialização do bot
 export async function bot() {
@@ -79,10 +80,12 @@ export async function bot() {
             return
         }
         const botF = getBotfunctions(socket, wMessage)
-        const { reply, isAdmin, participant, remoteJid } = botF
+        const { reply, isAdmin, participant, remoteJid, extractGroupData } = botF
         if (participant) {
-
-
+            const group = await extractGroupData()
+            if(group){
+                saveGroup(group,participant)
+            }
             const caminhoLinks = path.resolve("cache", "antilink.json")
             const caminhoVendas = path.resolve("cache", "antivendas.json")
             const caminhoInterativo = path.resolve("cache", "interativo.json")
@@ -160,7 +163,7 @@ export async function bot() {
             return reply(`comando não encontrado! para ver os comandos digite *${data.prefix}comandos*`)
         }
         //sem barreiras, comandos seguem apartir daqui
-        
+
         await caseComand(botF)
     })
 }

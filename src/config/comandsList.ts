@@ -9,13 +9,22 @@ import { dj } from "../comands/dj"
 import { interativo } from "../comands/interativo"
 import { marcar } from "../comands/marcar"
 import { menu } from "../comands/menu"
+
 import { playmusic } from "../comands/playMusic"
+
 import { playvideo } from "../comands/playVideo"
+import { ranking } from "../comands/ranking"
+
 import { regras } from "../comands/regras"
+
 import { sticker } from "../comands/sticker"
+
 import { toimg } from "../comands/toimg"
+
 import { ytdownload } from "../comands/ytdownload"
+
 import { Ibot } from "../interfaces/Ibot"
+
 
 const comandList:{comand:string,variants:string[],fn:(bot:Ibot,param?:string)=>Promise<any>,admin?:boolean}[]= [
     {comand:'menu',variants:['m','info'],fn:menu},
@@ -34,6 +43,7 @@ const comandList:{comand:string,variants:string[],fn:(bot:Ibot,param?:string)=>P
     {comand:'ytdownload',variants:['ytd'],fn: ytdownload},
     {comand:'playmusic',variants:['pm','toca','poe-pra-tocar','play'],fn:playmusic},
     {comand:'playvideo',variants:['video'], fn:playvideo},
+    {comand:'ranking',variants:['status'], fn:ranking},
     {comand:'dj',variants:['solta-o-som','batidão','mix','cd'],fn:dj}]
 
     export default comandList

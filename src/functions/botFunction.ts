@@ -13,9 +13,9 @@ export const getBotfunctions = (socket: any, webMessage: proto.IWebMessageInfo):
     const botInfo = socket.user
 
     //group data
-    const extractGroupData = async function (): Promise<Igroup> {
+    const extractGroupData = async function (): Promise<Igroup|null> {
         if (!isGroup) {
-            return {}
+            return null
         }
         const data = await socket.groupMetadata(webMessage.key.remoteJid)
 

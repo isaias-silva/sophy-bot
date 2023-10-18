@@ -31,7 +31,7 @@ export async function ban(bot: Ibot, phoneid?: string) {
     if (superadmin) {
         return reply('nao se pode remover o criador do grupo!')
     }
-    const group:Igroup=await extractGroupData()
+    const group:Igroup|null=await extractGroupData()
     if(!group){
         return
     }

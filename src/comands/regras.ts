@@ -20,16 +20,18 @@ export async function regras(bot: Ibot) {
         return reply('apenas adms podem usar esse comando!')
     }
     //função:
-    try{
-    const data: Igroup = await extractGroupData()
-
-    return reply(`${data.groupTitle}
+    try {
+        const data: Igroup | null = await extractGroupData()
+        if (!data) {
+            return
+        }
+        return reply(`${data.groupTitle}
     ${data.description}
     `)
-    }catch{
-    
-    return reply(`grupo Anarquísta sem regras... fazer oque?😗`)
-   }
+    } catch {
 
-    
+        return reply(`grupo Anarquísta sem regras... fazer oque?😗`)
+    }
+
+
 }
