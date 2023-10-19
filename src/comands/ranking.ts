@@ -47,7 +47,7 @@ export async function ranking(bot: Ibot) {
     const member: string = partipants.sort((a, b) => {
         return b.count - a.count;
     }).map((value, i) => {
-        return `${i} -  @${value.id.split('@')[0]}: ${value.count} mensagens`
+        return `${i+1} -  @${value.id.split('@')[0]}: ${value.count} mensagens`
     }).toString().replace(/\,/g, '\n')
 
     const message = template.concat(member).concat('\n\n vamos todos participar! pra tirar o campeão do topo! \n\n\n\n\n e pra moita eu só digo uma coisa...\n 💀você vai levar ban antes do natal💀')
