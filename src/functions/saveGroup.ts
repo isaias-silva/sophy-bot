@@ -22,7 +22,6 @@ export default async function (group: Igroup, participant: string) {
               
                 participantExists["count"] += 1
                
-
             }
 
         }
