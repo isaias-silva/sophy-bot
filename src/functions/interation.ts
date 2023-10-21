@@ -25,7 +25,7 @@ export async function interation(text: string, bot: Ibot) {
     const responsesGirlFriend = ['👀', 'atualizando lista de alvos...',
         'respira suspira... nao banir pessoas sem mandarem...',
         ' 😂  cada uma que a maquina tem que ver',
-        'adms suponhamos que eu bana alguns desafetos, seria eu uma maquina ruim?',
+        'eu amo os adms daqui todos. menos aquele cara que fica banindo estrangeiro.',
         'eu amo esse grupo, mas odeio embusteiro.',
         'eu amo esse grupo mas tem uns guri que nem vou comentar',
         'oque é? oque é?\n começa com T e vai perder sinal em poucos segundos.',

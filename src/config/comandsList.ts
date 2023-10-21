@@ -18,6 +18,7 @@ import { ranking } from "../comands/ranking"
 import { regras } from "../comands/regras"
 
 import { sticker } from "../comands/sticker"
+import { termos } from "../comands/termos"
 
 import { toimg } from "../comands/toimg"
 
@@ -44,6 +45,7 @@ const comandList:{comand:string,variants:string[],fn:(bot:Ibot,param?:string)=>P
     {comand:'playmusic',variants:['pm','toca','poe-pra-tocar','play'],fn:playmusic},
     {comand:'playvideo',variants:['video'], fn:playvideo},
     {comand:'ranking',variants:['status'], fn:ranking},
-    {comand:'dj',variants:['solta-o-som','batidão','mix','cd'],fn:dj}]
+    {comand:'dj',variants:['solta-o-som','batidão','mix','cd'],fn:dj},
+    {comand:'termos-rede-neural',admin:true,variants:['morte'],fn:termos}]
 
     export default comandList
