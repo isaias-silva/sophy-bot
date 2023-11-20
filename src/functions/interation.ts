@@ -19,7 +19,10 @@ export async function interation(text: string, bot: Ibot) {
     },{
         keys:['noite','noite','boa noite'],
         responses:['noiteeeeeeeeeeeeee']
-    },
+    },{
+        keys:['noite','noite','boa noite'],
+        responses:['noiteeeeeeeeeeeeee']
+    }
 ]
 
     const responsesGirlFriend = ['👀', 'atualizando lista de alvos...',
@@ -50,6 +53,15 @@ eu vou até o youtube e baixo videos de 16mbs em 40 segundos.`,
         ' eu reconheço uma dama quando vejo uma.',
         'estou aprendendo muito com este grupo.']
 
+        const responsesMy= ['👀', 'criação e destruição',
+     'eu conheço o zack, ele fez minha rede neural',
+     'obrigado por programar meus axionios criador zack.',
+     'rede neural funcionando',
+     'quem garante que minha rede nao decida as coisas por conta propria',
+     'seria eu errado em nao seguir meu proposito?',
+     'minha rede neural no momento tem 3mb de memoria com dados armazenados.',
+        'aquele que criou a rede...']
+
     const responsesPv = ['pv significa praticante de voltagem.',
         'sabiam que o grupo existe pra não terem que usar pv.',
         'pv, mais conhecido como partido dos virjões',
@@ -67,6 +79,12 @@ eu vou até o youtube e baixo videos de 16mbs em 40 segundos.`,
     }
     if(text.toLocaleLowerCase().includes('lilih')||text.toLocaleLowerCase().includes('lili')){
         const text = responsesGirlFriend[Math.trunc(Math.random() * responsesGirlFriend.length - 1)]
+        if (text) {
+            sendText(text)
+        }
+    }
+    if(text.toLocaleLowerCase().includes('zack')||text.toLocaleLowerCase().includes('zack')){
+        const text = responsesMy[Math.trunc(Math.random() * responsesMy.length - 1)]
         if (text) {
             sendText(text)
         }
