@@ -6,7 +6,7 @@ import { ban } from "../comands/ban"
 import { boasVindas } from "../comands/boasVindas"
 import { comandos } from "../comands/comandos"
 import { dj } from "../comands/dj"
-import { interativo } from "../comands/interativo"
+
 import { marcar } from "../comands/marcar"
 import { menu } from "../comands/menu"
 
@@ -38,7 +38,6 @@ const comandList:{comand:string,variants:string[],fn:(bot:Ibot,param?:string)=>P
     {comand:'marcar',admin:true,variants:['m','chamar-moita','agitar-moita','moita'],fn:marcar},
     {comand:'antilink',admin:true,variants:['al','sem_link'],fn:antiLink},
     {comand:'antifake',admin:true,variants:['af','sobr'],fn:antiFake},
-    {comand:'interativo',admin:true,variants:['it','conversador'],fn:interativo},
     {comand:'boasvindas',admin:true,variants:['bv','educacao'],fn:boasVindas},
     {comand:'antivendas',admin:true,variants:['av','pega_golpe','antigolpista','antigolpes'],fn:antiVendas},
     {comand:'ytdownload',variants:['ytd'],fn: ytdownload},

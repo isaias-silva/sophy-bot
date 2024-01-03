@@ -32,7 +32,7 @@ export async function bot() {
 
         if (action == 'add') {
             const caminhoAntf = path.resolve("cache", "antifake.json")
-            const isAntiFake = toJsonArrays(caminhoAntf).find(element => element.id == id && element.ative === true)
+            const isAntiFake = toJsonArrays(caminhoAntf).find((element: { id: string; ative: boolean; }) => element.id == id && element.ative === true)
             if (isAntiFake) {
                 let areacode = extractAreaCode(numberParticipant)
                 if (areacode != '55') {
@@ -46,7 +46,7 @@ export async function bot() {
         }
         const caminhoBoas = path.resolve("cache", "boasvindas.json")
 
-        const isGroupBemvindo = toJsonArrays(caminhoBoas).find(element => element.id == id && element.ative === true)
+        const isGroupBemvindo = toJsonArrays(caminhoBoas).find((element: { id: string; ative: boolean; }) => element.id == id && element.ative === true)
         if (!isGroupBemvindo) {
             return
         }
@@ -89,9 +89,9 @@ export async function bot() {
             const caminhoLinks = path.resolve("cache", "antilink.json")
             const caminhoVendas = path.resolve("cache", "antivendas.json")
             const caminhoInterativo = path.resolve("cache", "interativo.json")
-            const isAntilink = toJsonArrays(caminhoLinks).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
-            const isAntivendas = toJsonArrays(caminhoVendas).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
-            const isInterativo = toJsonArrays(caminhoInterativo).find(element => element.id == wMessage.key.remoteJid && element.ative === true)
+            const isAntilink = toJsonArrays(caminhoLinks).find((element: { id: string | null | undefined; ative: boolean; }) => element.id == wMessage.key.remoteJid && element.ative === true)
+            const isAntivendas = toJsonArrays(caminhoVendas).find((element: { id: string | null | undefined; ative: boolean; }) => element.id == wMessage.key.remoteJid && element.ative === true)
+            const isInterativo = toJsonArrays(caminhoInterativo).find((element: { id: string | null | undefined; ative: boolean; }) => element.id == wMessage.key.remoteJid && element.ative === true)
 
             const text =
                 message?.conversation ||

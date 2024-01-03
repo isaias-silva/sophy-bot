@@ -68,7 +68,7 @@ export async function caseComand(bot: Ibot) {
         }
         const { comand, fn, variants } = value
         if (comandInput[0] == comand || variants.find(variant=>variant==comandInput[0])) {
-       console.log(comand+ " passou")
+       
             fn(bot, comandInput[1])
             comandUsed = true
             return
